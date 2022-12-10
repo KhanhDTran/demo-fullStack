@@ -1,9 +1,9 @@
 import express from "express"
 import userApi from "../api/userApi"
-
+import loginApi from "../api/loginApi"
 let router = express.Router()
 
-let initWebRoute = (app) =>{
+let initWebRoute = (app) => {
 
     router.get('/', (req, res) => {
         return res.render('home.ejs')
@@ -13,7 +13,9 @@ let initWebRoute = (app) =>{
     router.post('/api/create-user', userApi.createUser)
     router.put('/api/update-user', userApi.updateUser)
     router.delete('/api/delete-user', userApi.deleteUser)
-   
+
+    router.get('/api/login', loginApi.handleLogin)
+
     return app.use('/', router)
 
 }
