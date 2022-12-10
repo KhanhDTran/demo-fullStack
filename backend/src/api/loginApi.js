@@ -20,9 +20,7 @@ let handleLogin = async (req, res) => {
             return res.status(200).json({ errCode: 3, message: "User not exist" })
         }
     }
-
 }
-
 
 module.exports = {
     handleLogin: handleLogin

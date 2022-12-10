@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
-
 import * as actions from "../store/actions";
-// import { KeyCodeUtils, LanguageUtils } from "../utils";
-
 import "./Login.scss";
-import { FormattedMessage } from 'react-intl';
-
-// import adminService from '../services/adminService';
 import { loginApi } from '../services/userService';
 
 class Login extends Component {
@@ -19,7 +13,6 @@ class Login extends Component {
       password: "",
       message: "",
       showPassword: false
-
     };
   }
 
@@ -65,6 +58,7 @@ class Login extends Component {
         }
         else {
           this.props.userLoginSuccess(response.data.user)
+          console.log(this.props)
         }
       } catch (e) {
         console.log(e)
@@ -130,7 +124,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     navigate: (path) => dispatch(push(path)),
     userLoginFail: () => dispatch(actions.userLoginFail()),
-    userLoginSuccess: (adminInfo) => dispatch(actions.userLoginSuccess(adminInfo)),
+    userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),
   };
 };
 
