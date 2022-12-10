@@ -70,9 +70,62 @@ let hashPassword = (password) => {
     }
 }
 
+let getAllUser = () => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let users = await db.User.findAll()
+            for (let i = 0; i < users.length; i++) {
+                users[i].password = undefined
+                delete users[i].password
+            }
+            users ? resolve(users) : resolve(undefined)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let getUserById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({ where: { id: id } })
+            user.password = undefined
+            delete user.password
+            user ? resolve(user) : resolve(undefined)
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let checkEmail = (email) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            let user = await db.User.findOne({ where: { email: email } })
+            user ? resolve(user) : resolve(undefined)
+
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
+let checkUserParameter = (data) => {
+    if (!data.email || !data.password || !data.firstName || !data.lastName || !data.address || !data.roleId || !data.positionId) {
+        return true
+    } else {
+        return false
+    }
+}
+
+
 module.exports = {
     createUser: createUser,
     updateUser: updateUser,
     deleteUser: deleteUser,
+    checkEmail: checkEmail,
+    getUserById: getUserById,
+    getAllUser: getAllUser,
+    checkUserParameter: checkUserParameter
 
 }

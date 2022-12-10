@@ -1,6 +1,8 @@
 import express from "express"
 import userApi from "../api/userApi"
 import loginApi from "../api/loginApi"
+require('dotenv').config()
+
 let router = express.Router()
 
 let initWebRoute = (app) => {
@@ -14,7 +16,7 @@ let initWebRoute = (app) => {
     router.put('/api/update-user', userApi.updateUser)
     router.delete('/api/delete-user', userApi.deleteUser)
 
-    router.get('/api/login', loginApi.handleLogin)
+    router.post('/api/login', loginApi.handleLogin)
 
     return app.use('/', router)
 
