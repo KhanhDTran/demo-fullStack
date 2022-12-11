@@ -58,7 +58,7 @@ class Login extends Component {
         }
         else {
           this.props.userLoginSuccess(response.data.user)
-          console.log(this.props)
+       
         }
       } catch (e) {
         console.log(e)
