@@ -31,7 +31,7 @@ let updateUser = async (user) => {
     return new Promise(async (resolve, reject) => {
         try {
             await db.User.update({
-                email: user.email,
+                // email: user.email,
                 firstName: user.firstName,
                 lastName: user.lastName,
                 address: user.address,

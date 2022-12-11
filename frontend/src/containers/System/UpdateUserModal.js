@@ -2,32 +2,27 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { connect } from 'react-redux';
+import { getTextOfJSDocComment } from 'typescript';
 
-class UserModal extends Component {
+class UpdateUserModal extends Component {
 
 
     constructor(props) {
         super(props)
         this.state = {
             modal: false,
-            email: '',
-            password: '',
-            phoneNumber: '',
-            address: '',
-            firstName: '',
-            lastName: '',
+            email: this.props.user.email,
+            password: 'hardcode',
+            phoneNumber: this.props.user.phoneNumber,
+            address: this.props.user.address,
+            firstName: this.props.user.firstName,
+            lastName: this.props.user.lastName,
         }
     }
 
     toggle = () => {
         this.setState({
-            modal: !this.state.modal,
-            email: '',
-            password: '',
-            phoneNumber: '',
-            address: '',
-            firstName: '',
-            lastName: '',
+            modal: !this.state.modal
         });
     }
 
@@ -37,15 +32,16 @@ class UserModal extends Component {
         this.setState({ ...copyState })
     }
 
-    saveCreateForm = async () => {
+    saveUpdateForm = async () => {
         let check = this.checkInput()
         if (check) {
             alert('Please enter ' + check)
         } else {
-            let response = await this.props.createNewUser(this.state.email, this.state.password,
-                this.state.address, this.state.firstName, this.state.lastName, this.state.phoneNumber)
+            let response = await this.props.updateUser(this.props.user.id, this.state.email,
+                this.state.address, this.state.firstName,
+                this.state.lastName, this.state.phoneNumber)
             if (response) {
-                this.toggle()
+                this.props.toggle()
             }
         }
     }
@@ -63,25 +59,20 @@ class UserModal extends Component {
     render() {
         return (
             <div>
-                <button type="button" className="create-user-btn" data-toggle="modal"
-                    onClick={this.toggle} data-target="#exampleModal">
-                    Create user
-                </button>
-
-                <Modal isOpen={this.state.modal}
-                    toggle={this.toggle} className={this.props.className} size='lg' centered >
-                    <ModalHeader toggle={this.toggle}>Create new user</ModalHeader>
+                <Modal isOpen={this.props.isOpen}
+                    toggle={this.props.toggle} className={this.props.className} size='lg' centered >
+                    <ModalHeader toggle={this.props.toggle}>Update user</ModalHeader>
                     <ModalBody>
 
                         <div className='input-group'>
                             <div className='input-container'>
                                 <label for='email'>Email</label>
-                                <input type='email' placeholder='Email...' id='email' value={this.state.email}
+                                <input type='email' placeholder='Email...' id='email' disabled='true' value={this.state.email}
                                     onChange={(e) => this.handleInputChange(e)} />
                             </div>
                             <div className='input-container'>
                                 <label for='password'>Password</label>
-                                <input type='password' placeholder='Password...' id='password' value={this.state.password}
+                                <input type='password' placeholder='Password...' disabled='true' id='password' value='hardcode'
                                     onChange={(e) => this.handleInputChange(e)} />
                             </div>
                         </div>
@@ -112,8 +103,8 @@ class UserModal extends Component {
 
                     </ModalBody>
                     <ModalFooter>
-                        <Button color="primary" onClick={this.saveCreateForm} >Save</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                        <Button color="primary" onClick={this.saveUpdateForm} >Save</Button>{' '}
+                        <Button color="secondary" onClick={this.props.toggle}>Cancel</Button>
                     </ModalFooter>
                 </Modal>
 
@@ -134,4 +125,4 @@ const mapDispatchToProps = dispatch => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserModal);
+export default connect(mapStateToProps, mapDispatchToProps)(UpdateUserModal);

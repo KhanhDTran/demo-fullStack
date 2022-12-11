@@ -1,0 +1,25 @@
+.home-header-container {
+    display: flex;
+    justify-content: space-around;
+
+    .header-left-content {
+        display: flex;
+        width: 25%;
+        border: 1px solid black;
+
+        .logo {
+            height: 80%;
+            background: url('../../assets/images/bookingcare-2020.svg') center center no-repeat;
+        }
+    }
+
+    .header-center-content {
+        width: 50%;
+        border: 1px solid black;
+    }
+
+    .header-right-content {
+        width: 25%;
+        border: 1px solid black;
+    }
+}

@@ -5,6 +5,7 @@ import './UserManage.scss'
 import { getUsersApi, createUserApi, deleteUserApi, updateUserApi } from '../../services/userService';
 
 import UserModal from './UserModal';
+import UpdateUserModal from './UpdateUserModal';
 
 class UserManage extends Component {
 
@@ -12,7 +13,8 @@ class UserManage extends Component {
         super(props)
         this.state = {
             users: [],
-
+            openUpdateModal: false,
+            currentUser: {}
         }
     }
 
@@ -39,18 +41,37 @@ class UserManage extends Component {
     }
 
     handleDeleteUser = async (user) => {
-        // let response = await deleteUserApi(user.id)
-        // alert(response.data.message)
-        // if (response.data.errCode === 0) {
-        //     this.getUsers()
-        // }
-    }
-    handleUpdateUser = async (user) => {
-        let response = await updateUserApi(user.id, user.email, user.address, user.firstName, user.lastName, user.phoneNumber)
+        let response = await deleteUserApi(user.id)
         alert(response.data.message)
         if (response.data.errCode === 0) {
             this.getUsers()
+            return true
+        } else {
+            return false
         }
+    }
+    openUpdateUserModal = async (user) => {
+        this.setState({
+            openUpdateModal: !this.state.openUpdateModal,
+            currentUser: user
+        }, () => {
+
+        })
+    }
+
+    updateUser = async (id, email, address, firstName, lastName, phoneNumber) => {
+        let response = await updateUserApi(id, email, address, firstName, lastName, phoneNumber)
+        alert(response.data.message)
+        if (response.data.errCode === 0) {
+            this.getUsers()
+            return true
+        } else {
+            return false
+        }
+    }
+
+    toggleUpdateUserModal = () => {
+        this.setState({ openUpdateModal: !this.state.openUpdateModal })
     }
 
     componentDidMount() {
@@ -61,9 +82,12 @@ class UserManage extends Component {
 
         return (
             <div className='users-container' >
+
+                {this.state.openUpdateModal && <UpdateUserModal className='update-user-modal'
+                    user={this.state.currentUser} isOpen={this.state.openUpdateModal}
+                    toggle={this.toggleUpdateUserModal} updateUser={this.updateUser} />}
                 <h2 className='title'> User Management</h2>
                 <UserModal className='create-user-modal' createNewUser={this.createNewUser} />
-
                 <div className='users-table'>
                     <table>
                         <tr>
@@ -80,7 +104,7 @@ class UserManage extends Component {
                                     <th>{item.firstName}</th>
                                     <th>{item.lastName}</th>
                                     <th>{item.address}</th>
-                                    <th><button onClick={() => this.handleUpdateUser(item)}>update</button>
+                                    <th><button onClick={() => this.openUpdateUserModal(item)}>update</button>
                                         <button onClick={() => this.handleDeleteUser(item)}>Delete</button>
                                     </th>
                                 </tr>
