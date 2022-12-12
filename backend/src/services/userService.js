@@ -118,6 +118,27 @@ let checkUserParameter = (data) => {
     }
 }
 
+let getAllCode = (type) => {
+    return new Promise(async (resolve, reject) => {
+        let res = {}
+        try {
+            if (!type) {
+                let allcode = await db.Allcode.findAll()
+                res.errCode = 0
+                res.data = allcode
+            } else {
+                let allcode = await db.Allcode.findAll({ where: { type: type } })
+                res.errCode = 0
+                res.data = allcode
+            }
+
+            resolve(res)
+        } catch (e) {
+            reject(e)
+        }
+
+    })
+}
 
 module.exports = {
     createUser: createUser,
@@ -126,6 +147,7 @@ module.exports = {
     checkEmail: checkEmail,
     getUserById: getUserById,
     getAllUser: getAllUser,
-    checkUserParameter: checkUserParameter
+    checkUserParameter: checkUserParameter,
+    getAllCode: getAllCode
 
 }

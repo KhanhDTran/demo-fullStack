@@ -16,9 +16,11 @@ let createUser = async (req, res) => {
             return res.status(200).json({ errCode: 0, message: "User created" })
         }
     } catch (e) {
-        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            message: e
+        })
     }
-
 
 }
 
@@ -37,7 +39,10 @@ let updateUser = async (req, res) => {
             return res.status(200).json({ errCode: 0, message: "User updated" })
         }
     } catch (e) {
-        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            message: e
+        })
     }
 
 }
@@ -58,7 +63,10 @@ let deleteUser = async (req, res) => {
             return res.status(200).json({ errCode: 0, message: "user deleted" })
         }
     } catch (e) {
-        console.log(e)
+        return res.status(200).json({
+            errCode: -1,
+            message: e
+        })
     }
 }
 
@@ -79,7 +87,23 @@ let getUser = async (req, res) => {
     }
 }
 
+let getAllCode = async (req, res) => {
+    try {
 
+        let response = await userService.getAllCode(req.query.type)
+        return res.status(200).json({
+            errCode: 0,
+            message: "Get all code ",
+            data: response.data
+        })
+    } catch (e) {
+        console.log("get all code err: ", e)
+        return res.status(200).json({
+            errCode: -1,
+            message: e
+        })
+    }
+}
 
 
 module.exports = {
@@ -87,4 +111,5 @@ module.exports = {
     updateUser: updateUser,
     deleteUser: deleteUser,
     getUser: getUser,
+    getAllCode: getAllCode
 }

@@ -18,6 +18,7 @@ let initWebRoute = (app) => {
 
     router.post('/api/login', loginApi.handleLogin)
 
+    router.get('/api/allcodes', userApi.getAllCode)
     return app.use('/', router)
 
 }

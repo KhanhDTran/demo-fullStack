@@ -17,7 +17,7 @@ tao model:
 	npx sequelize-cli model:generate --name Specialty --attributes name:string,description:text,image:string
 	npx sequelize-cli model:generate --name Schedule --attributes currentNumber:integer,maxNumber:integer,date:date,timeType:string,doctorId:integer
 	npx sequelize-cli model:generate --name Booking --attributes statusId:string,doctorId:integer,patientId:integer,date:date,timeType:string
-	npx sequelize-cli model:generate --name Allcode --attributes  keyString:string,type:string,value_en:string,value_vi:string
+	npx sequelize-cli model:generate --name Allcode --attributes  key:string,type:string,valueEn:string,valueVi:string
 	npx sequelize-cli model:generate --name Doctor_clinic_specialty --attributes doctorId:integer,clinicId:integer,specialtyId:integer  
     
 
