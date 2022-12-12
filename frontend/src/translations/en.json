@@ -1,4 +1,18 @@
 {
+    "banner": {
+        "title1": "MEDICAL FOUNDATION",
+        "title2": "COMPREHENSIVE HEALTH CARE"
+    },
+    "homeHeader": {
+        "specialty": "Specialty",
+        "searchDoctor": "Search Doctor",
+        "healthFacility": "Health Facility",
+        "selectRoom": "Select Room",
+        "doctor": "Doctor",
+        "selectDoctor": "Choose doctor",
+        "checkPack": "Health pack",
+        "healChecking": "Heal checking"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

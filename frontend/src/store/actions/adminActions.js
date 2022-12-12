@@ -12,3 +12,8 @@ export const adminLoginFail = () => ({
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT
 })
+
+export const changeLanguage = (language) => ({
+    type: actionTypes.CHANGE_LANGUAGE,
+    language: language
+})

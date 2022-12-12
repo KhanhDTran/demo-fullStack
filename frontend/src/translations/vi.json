@@ -1,4 +1,18 @@
 {
+    "banner": {
+        "title1": "NỀN TẢNG Y TẾ",
+        "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN"
+    },
+    "homeHeader": {
+        "specialty": "Chuyên khoa",
+        "searchDoctor": "Tìm bác sĩ",
+        "healthFacility": "Cơ sở y tế",
+        "selectRoom": "Chọn phòng y tế",
+        "doctor": "Bác sĩ",
+        "selectDoctor": "Chọn bác sĩ",
+        "checkPack": "Gói khám",
+        "healChecking": "Khám sức khỏe"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

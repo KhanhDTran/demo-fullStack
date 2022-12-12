@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from './Header';
+import HomeHeader from './HomeHeader';
 import './HomePage.scss'
 
 
@@ -9,7 +9,7 @@ class HomePage extends Component {
     render() {
         return (
             <div>
-                <Header />
+                <HomeHeader />
 
                 home
             </div>
