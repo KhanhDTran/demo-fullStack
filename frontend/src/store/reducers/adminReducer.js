@@ -14,16 +14,32 @@ const adminReducer = (state = initialState, action) => {
                 ...state
             }
         case actionTypes.FETCH_GENDER_SUCCESS:
-            let copyState = { ...state }
-            copyState.genders = action.genderData
-            state = { ...copyState }
-            console.log(state)
+            state.genders = action.genderData
             return {
-
                 ...state
             }
         case actionTypes.FETCH_GENDER_FAIL:
-            console.log('actions fail')
+            state.genders = []
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_POSITION_SUCCESS:
+            state.positions = action.positionData
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_POSITION_FAIL:
+            state.positions = []
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ROLE_SUCCESS:
+            state.roles = action.roleData
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_ROLE_FAIL:
+            state.genders = []
             return {
                 ...state
             }

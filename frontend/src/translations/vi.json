@@ -54,6 +54,7 @@
         "gender": "Giới tính",
         "position": "Vị trí",
         "image": "Ảnh",
-        "save": "Lưu"
+        "save": "Lưu",
+        "upload": "Tải ảnh "
     }
 }
