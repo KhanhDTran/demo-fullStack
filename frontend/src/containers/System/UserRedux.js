@@ -7,10 +7,10 @@ import { connect } from 'react-redux';
 
 class UserRedux extends Component {
     constructor(props) {
-        super(props),
-            this.state = {
+        super(props)
+        this.state = {
 
-            }
+        }
     }
 
 
