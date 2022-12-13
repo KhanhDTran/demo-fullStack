@@ -2,29 +2,25 @@ import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { LANGUAGES } from '../../../utils';
-import { getAllCodeApi } from '../../../services/userService';
-
+import * as actions from "../../../store/actions"
 class UserRedux extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            genderArr: []
+            genderArr: [],
+            roleArr: [],
+            positionArr: []
         }
     }
 
     async componentDidMount() {
-        try {
-            let res = await getAllCodeApi('gender')
 
-            if (res && res.data.errCode == 0) {
-                this.setState({ genderArr: res.data.data })
-            }
-        } catch (e) {
-            console.log(e)
-        }
+        this.props.getGenderStart()
     }
     render() {
-        let genders = this.state.genderArr
+        let genders = this.props.genderRedux
+        let roles = this.state.roleArr
+        let positions = this.state.positionArr
         let language = this.props.language
         return (
             <div className='user-redux-container'>
@@ -73,17 +69,24 @@ class UserRedux extends Component {
                             <div className='col-3'>
                                 <label htmlFor="inputState"><FormattedMessage id='manage-user.role' /></label>
                                 <select id="inputState" className="form-control">
-                                    {/* {genderArs && genderArr.length > 0 && genders.map()} */}
                                     <option value>Choose...</option>
+                                    {roles && roles.length > 0 && roles.map((item, index) => {
+                                        return (
+                                            <option key={index}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
+                                        )
+                                    })}
                                     <option>...</option>
                                 </select>
                             </div>
                             <div className='col-3'>
                                 <label htmlFor="inputState"><FormattedMessage id='manage-user.position' /></label>
                                 <select id="inputState" className="form-control">
-                                    {/* {genderArs && genderArr.length > 0 && genders.map()} */}
                                     <option value>Choose...</option>
-                                    <option>...</option>
+                                    {positions && positions.length > 0 && positions.map((item, index) => {
+                                        return (
+                                            <option key={index}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
+                                        )
+                                    })}
                                 </select>
                             </div>
                             <div className='col-3'>
@@ -103,11 +106,14 @@ class UserRedux extends Component {
 }
 const mapStateToProps = state => {
     return {
-        language: state.app.language
+        language: state.app.language,
+        genderRedux: state.admin.genders
     };
 };
 const mapDispatchToProps = dispatch => {
     return {
+        // changeLanguage: (language) => dispatch(changeLanguage(language))
+        getGenderStart: () => dispatch(actions.fetchGenderStart())
     };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);

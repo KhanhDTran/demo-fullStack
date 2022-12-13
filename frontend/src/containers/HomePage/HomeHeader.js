@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import logoImg from '../../assets/images/bookingcare-2020.svg'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils"
-import { changeLanguage } from '../../store/actions/adminActions';
+import { changeLanguage } from '../../store/actions/userActions';
 
 class HomeHeader extends Component {
 
