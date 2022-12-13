@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { changeLanguage } from '../../store/actions/adminActions';
 import * as actions from "../../store/actions";
@@ -9,12 +10,13 @@ import { LANGUAGES } from "../../utils"
 
 class Header extends Component {
 
+
     changeLanguage = (language) => {
         this.props.changeLanguage(language)
     }
     render() {
         let language = this.props.language
-        const { processLogout } = this.props;
+        const { processLogout, userInfo } = this.props;
 
         return (
             <div className="header-container">
@@ -27,6 +29,8 @@ class Header extends Component {
 
                     {/* nút logout */}
                     <div className='languages'>
+                        <span className='welcome'><FormattedMessage id='homeHeader.welcome'></FormattedMessage > ,
+                            {userInfo && this.props.userInfo.firstName ? this.props.userInfo.firstName : ""}  </span>
                         <span className={language === 'vi' ? 'language-vi active' : 'language-vi'}
                             onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
                         <span className={language === 'en' ? 'language-en active' : 'language-en'}
@@ -47,7 +51,9 @@ class Header extends Component {
 const mapStateToProps = state => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        language: state.app.language
+        language: state.app.language,
+        userInfo: state.user.userInfo
+
     };
 };
 
