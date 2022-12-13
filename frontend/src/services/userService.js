@@ -25,5 +25,9 @@ const updateUserApi = (id, email, address, firstName, lastName, phoneNumber) => 
     return instance.put('/api/update-user', { id, email, address, firstName, lastName, phoneNumber })
 }
 
+const getAllCodeApi = (inputType) => {
+    return instance.get(`/api/allcodes?type=${inputType}`)
+}
 
-export { loginApi, getUsersApi, createUserApi, deleteUserApi, updateUserApi }
+
+export { loginApi, getUsersApi, createUserApi, deleteUserApi, updateUserApi, getAllCodeApi }

@@ -8,7 +8,7 @@
     "@fortawesome/fontawesome-free-webfonts": "^1.0.9",
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^0.21.1",
-    "bootstrap": "^5.0.1",
+    "bootstrap": "^4.6.0",
     "connected-react-router": "^6.9.1",
     "font-awesome": "^4.7.0",
     "lodash": "^4.17.21",

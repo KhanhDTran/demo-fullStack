@@ -75,19 +75,19 @@ class Login extends Component {
             <span>Login</span>
           </div>
           <div className="input-container">
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
             <input type="email" id="email" placeholder="enter email..."
               value={this.state.email} onChange={(e) => { this.handleInputChange(e, 'email') }} />
           </div>
           <div className="input-container">
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type={!this.state.showPassword ? "password" : "text"}
               id="password"
               placeholder="enter password..."
               value={this.state.password} onChange={(e) => { this.handleInputChange(e, 'password') }}
             />
-            <i class={this.state.showPassword ? "fa fa-eye-slash" : "fa fa-eye"} onClick={() => this.handleShowPassword()}></i>
+            <i className={this.state.showPassword ? "fa fa-eye-slash" : "fa fa-eye"} onClick={() => this.handleShowPassword()}></i>
 
           </div>
           <div className="forgot-password">
