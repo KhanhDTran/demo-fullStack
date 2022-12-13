@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import { changeLanguage } from '../../store/actions/adminActions';
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
 import { adminMenu } from './menuApp';
 import './Header.scss';
+import { LANGUAGES } from "../../utils"
 
 class Header extends Component {
 
+    changeLanguage = (language) => {
+        this.props.changeLanguage(language)
+    }
     render() {
+        let language = this.props.language
         const { processLogout } = this.props;
 
         return (
@@ -18,9 +23,20 @@ class Header extends Component {
                     <Navigator menus={adminMenu} />
                 </div>
 
-                {/* nút logout */}
-                <div className="btn btn-logout" onClick={processLogout}>
-                    <i className="fas fa-sign-out-alt"></i>
+                <div className='right-side-container'>
+
+                    {/* nút logout */}
+                    <div className='languages'>
+                        <span className={language === 'vi' ? 'language-vi active' : 'language-vi'}
+                            onClick={() => this.changeLanguage(LANGUAGES.VI)}>VN</span>
+                        <span className={language === 'en' ? 'language-en active' : 'language-en'}
+                            onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
+                    </div>
+                    <div className="btn btn-logout" title='log-out' onClick={processLogout}>
+
+                        <i className="fas fa-sign-out-alt"></i>
+
+                    </div>
                 </div>
             </div>
         );
@@ -30,13 +46,15 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        language: state.app.language
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         processLogout: () => dispatch(actions.processLogout()),
+        changeLanguage: (language) => dispatch(changeLanguage(language))
     };
 };
 
