@@ -16,7 +16,7 @@ let createUser = async (data) => {
                 address: data.address,
                 phoneNumber: data.phoneNumber,
                 gender: data.gender,
-                image: '',
+                image: data.image,
                 roleId: data.roleId,
                 positionId: data.positionId
             })

@@ -13,8 +13,19 @@ const getUsersApi = () => {
     return instance.get('/api/users')
 }
 
-const createUserApi = (email, password, address, firstName, lastName, phoneNumber) => {
-    return instance.post('/api/create-user', { email, password, address, firstName, lastName, phoneNumber })
+const createUserApi = (data) => {
+    return instance.post('/api/create-user', {
+        email: data.email,
+        password: data.password,
+        address: data.address,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phoneNumber: data.phoneNumber,
+        roleId: data.roleId,
+        positionId: data.positionId,
+        gender: data.gender,
+        image: data.image.name
+    })
 }
 
 const deleteUserApi = (id) => {
