@@ -4,7 +4,7 @@ import logoImg from '../../assets/images/bookingcare-2020.svg'
 import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from "../../utils"
 import { changeLanguage } from '../../store/actions/userActions';
-
+import './HomeHeader.scss'
 class HomeHeader extends Component {
 
     changeLanguage = (language) => {

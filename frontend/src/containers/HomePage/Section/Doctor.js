@@ -3,43 +3,105 @@ import { connect } from 'react-redux';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import './specialty.scss'
+
+
 
 class Doctor extends Component {
 
     render() {
+
         return (
-            <div className='section-container'>
-                <div >
-                    <h2>Bác sĩ phổ biến</h2>
-                </div>
-                <div>
-                    <Slider {...this.props.settings}>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 1</h5>
-                        </div>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 2</h5>
-                        </div>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 3</h5>
-                        </div>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 4</h5>
-                        </div>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 5</h5>
-                        </div>
-                        <div className='doctor-customize'>
-                            <div class='bg-img'></div>
-                            <h5>Bác sĩ 6</h5>
-                        </div>
-                    </Slider>
+            <div className="section-share section-doctor">
+                <div className='section-container'>
+                    <div className='section-title'>
+                        <h2>Bác sĩ nổi bật</h2>
+                        <button>Tìm kiếm</button>
+                    </div>
+                    <div className='section-body'>
+                        <Slider {...this.props.settings}>
+                            <div className='section-box'>
+                                <div className="section-container">
+                                    <div className='img-doctor-container'>
+                                        <img className='img-doctor' />
+                                    </div>
+                                    <div className="position text-center">
+                                        <div>Bác sĩ   </div>
+                                        <div>Chuyên khoa</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className="section-container">
+
+                                    <div className='img-doctor-container'>
+                                        <img className='img-doctor' />
+                                    </div>
+                                    <div className="position text-center">
+                                        <div>Bác sĩ   </div>
+                                        <div>Chuyên khoa</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className="section-container">
+
+                                    <div className='img-doctor-container'>
+                                        <img className='img-doctor' />
+                                    </div>
+                                    <div className="position text-center">
+                                        <div>Bác sĩ   </div>
+                                        <div>Chuyên khoa</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className='img-doctor-container'>
+                                    <img className='img-doctor' />
+                                </div>
+                                <div className="position text-center">
+                                    <div>Bác sĩ   </div>
+                                    <div>Chuyên khoa</div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className='img-doctor-container'>
+                                    <img className='img-doctor' />
+                                </div>
+                                <div className="position text-center">
+                                    <div>Bác sĩ   </div>
+                                    <div>Chuyên khoa</div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className='img-doctor-container'>
+                                    <img className='img-doctor' />
+                                </div>
+                                <div className="position text-center">
+                                    <div>Bác sĩ   </div>
+                                    <div>Chuyên khoa</div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className='img-doctor-container'>
+                                    <img className='img-doctor' />
+                                </div>
+                                <div className="position text-center">
+                                    <div>Bác sĩ   </div>
+                                    <div>Chuyên khoa</div>
+                                </div>
+                            </div>
+                            <div className='section-box'>
+                                <div className='img-doctor-container'>
+                                    <img className='img-doctor' />
+                                </div>
+                                <div className="position text-center">
+                                    <div>Bác sĩ   </div>
+                                    <div>Chuyên khoa</div>
+                                </div>
+                            </div>
+
+                        </Slider>
+                    </div>
                 </div>
             </div>
         )

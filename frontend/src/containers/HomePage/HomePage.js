@@ -4,13 +4,13 @@ import HomeHeader from './HomeHeader';
 import './HomePage.scss'
 import Specialty from './Section/Specialty'
 import Doctor from './Section/Doctor';
-import Medical from './Section/Medical';
-
+import MedicalFacility from './Section/MedicalFacility';
+import Handbook from './Section/Handbook';
+import About from './Section/About';
+import HomeFooter from './HomeFooter';
 
 
 class HomePage extends Component {
-
-
 
     render() {
         let settings = {
@@ -24,9 +24,11 @@ class HomePage extends Component {
             <div>
                 <HomeHeader />
                 <Specialty settings={settings} />
-                <Medical settings={settings} />
+                <MedicalFacility settings={settings} />
                 <Doctor settings={settings} />
-
+                <Handbook />
+                <About />
+                <HomeFooter />
             </div>
         )
     }

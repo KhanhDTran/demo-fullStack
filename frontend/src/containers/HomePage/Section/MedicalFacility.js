@@ -6,58 +6,50 @@ import Slider from "react-slick";
 
 
 
-class Specialty extends Component {
+class MedicalFacility extends Component {
 
     render() {
-        const settings = {
-            dots: false,
-            infinite: true,
-            speed: 500,
-            slidesToShow: 4,
-            slidesToScroll: 4
-        };
+
         return (
-            <div className="section-share section-specialty">
-
-
+            <div className="section-share section-medicalFacility">
                 <div className='section-container'>
                     <div className='section-title'>
-                        <h2>Chuyên khoa phổ biến</h2>
-                        <button>Xem Thêm</button>
+                        <h2>Cơ sở y tế nổi bật</h2>
+                        <button>Tìm kiếm</button>
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
-                                <div>Cơ xương khớp </div>
+                                <img className='img-medicalFacility' />
+                                <div>Bệnh viện  </div>
                             </div>
 
                         </Slider>
@@ -81,4 +73,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default
-    connect(mapStateToProps, mapDispatchToProps)(Specialty);
+    connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
