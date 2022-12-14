@@ -1,6 +1,64 @@
 import actionTypes from './actionTypes';
-import { getAllCodeApi, createUserApi } from '../../services/userService';
+import { getAllCodeApi, createUserApi, getUsersApi, deleteUserApi, updateUserApi } from '../../services/userService';
+import { toast } from "react-toastify"
 
+
+//Create user
+export const createNewUser = (data) => {
+    return async (dispatch, getState,) => {
+        try {
+            let res = await createUserApi(data)
+            if (res && res.data.errCode == 0) {
+                dispatch(saveUserSuccess())
+
+                dispatch(fetchAllUser())
+            } else {
+                dispatch(saveUserFail())
+            }
+
+        } catch (e) {
+            console.log(e)
+            dispatch(saveUserFail())
+        }
+    }
+
+}
+export const saveUserSuccess = () => (toast.success("Create user success"), {
+    type: actionTypes.SAVE_USER_SUCCESS,
+})
+export const saveUserFail = () => (toast.error("Create user fail"),
+{
+    type: actionTypes.SAVE_USER_FAIL
+})
+
+//Delete user
+export const deleteUser = (id) => {
+    return async (dispatch, getState,) => {
+        try {
+            let res = await deleteUserApi(id)
+            if (res && res.data.errCode == 0) {
+                dispatch(deleteUserSuccess())
+                dispatch(fetchAllUser())
+            } else {
+                dispatch(deleteUserFail())
+            }
+
+        } catch (e) {
+            dispatch(deleteUserFail())
+        }
+    }
+
+}
+export const deleteUserSuccess = () => (toast.success("Delete user success"), {
+    type: actionTypes.DELETE_USER_SUCCESS
+
+})
+export const deleteUserFail = () => (toast.error("Delete user fail"), {
+    type: actionTypes.DELETE_USER_FAIL
+})
+
+
+//Gender
 export const fetchGenderStart = () => {
     return async (dispatch, getState,) => {
         try {
@@ -19,6 +77,15 @@ export const fetchGenderStart = () => {
 
 }
 
+export const fetchGenderSuccess = (genderData) => ({
+    type: actionTypes.FETCH_GENDER_SUCCESS,
+    genderData: genderData
+})
+export const fetchGenderFail = () => ({
+    type: actionTypes.FETCH_GENDER_FAIL
+})
+
+// Position
 export const fetchPositionStart = () => {
     return async (dispatch, getState,) => {
         try {
@@ -36,25 +103,17 @@ export const fetchPositionStart = () => {
     }
 
 }
-export const createNewUser = (data) => {
-    return async (dispatch, getState,) => {
-        try {
-            console.log(data)
-            let res = await createUserApi(data)
-            console.log(res)
-            if (res && res.data.errCode == 0) {
-                dispatch(saveUserSuccess())
-            } else {
-                dispatch(saveUserFail())
-            }
 
-        } catch (e) {
-            console.log(e)
-            dispatch(saveUserFail())
-        }
-    }
+export const fetchPositionSuccess = (positionData) => ({
+    type: actionTypes.FETCH_POSITION_SUCCESS,
+    positionData: positionData
+})
+export const fetchPositionFail = () => ({
+    type: actionTypes.FETCH_POSITION_FAIL
+})
 
-}
+
+//Role
 export const fetchRoleStart = () => {
     return async (dispatch, getState,) => {
         try {
@@ -73,22 +132,6 @@ export const fetchRoleStart = () => {
 
 }
 
-export const fetchGenderSuccess = (genderData) => ({
-    type: actionTypes.FETCH_GENDER_SUCCESS,
-    genderData: genderData
-})
-export const fetchGenderFail = () => ({
-    type: actionTypes.FETCH_GENDER_FAIL
-})
-
-
-export const fetchPositionSuccess = (positionData) => ({
-    type: actionTypes.FETCH_POSITION_SUCCESS,
-    positionData: positionData
-})
-export const fetchPositionFail = () => ({
-    type: actionTypes.FETCH_POSITION_FAIL
-})
 
 export const fetchRoleSuccess = (roleData) => ({
     type: actionTypes.FETCH_ROLE_SUCCESS,
@@ -98,11 +141,31 @@ export const fetchRoleFail = () => ({
     type: actionTypes.FETCH_ROLE_FAIL
 })
 
-export const saveUserSuccess = () => ({
-    type: actionTypes.SAVE_USER_SUCCESS
+//Get Users
+export const fetchAllUser = () => {
+    return async (dispatch, getState,) => {
+        try {
+            let res = await getUsersApi()
+            if (res && res.data.errCode == 0) {
+                dispatch(fetchAllUserSuccess(res.data.users.reverse()))
+
+            } else {
+                dispatch(fetchAllUserFail())
+            }
+
+        } catch (e) {
+            dispatch(fetchAllUserFail())
+            console.log("fetch gender failed", e)
+        }
+    }
+
+}
+
+export const fetchAllUserSuccess = (data) => ({
+    type: actionTypes.FETCH_USER_SUCCESS,
+    users: data
 
 })
-export const saveUserFail = () => ({
-    type: actionTypes.saveUserFail
+export const fetchAllUserFail = () => ({
+    type: actionTypes.FETCH_USER_FAIL
 })
-

@@ -4,7 +4,8 @@ import actionTypes from '../actions/actionTypes';
 const initialState = {
     genders: [],
     roles: [],
-    positions: []
+    positions: [],
+    users: []
 }
 
 const adminReducer = (state = initialState, action) => {
@@ -40,6 +41,16 @@ const adminReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_ROLE_FAIL:
             state.genders = []
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_USER_SUCCESS:
+            state.users = action.users
+            return {
+                ...state
+            }
+        case actionTypes.FETCH_USER_FAIL:
+            state.users = []
             return {
                 ...state
             }
