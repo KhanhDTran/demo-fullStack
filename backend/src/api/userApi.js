@@ -26,6 +26,7 @@ let createUser = async (req, res) => {
 
 let updateUser = async (req, res) => {
     let data = req.body
+    console.log("------------------------", data)
     if (!data.id) {
         return res.status(200).json({ errCode: 1, message: "Missing parameter" })
     }

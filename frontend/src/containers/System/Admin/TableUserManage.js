@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import './TableUserManage.scss'
 
 
-
 class TableUserManage extends Component {
 
     constructor(props) {
@@ -27,6 +26,7 @@ class TableUserManage extends Component {
     }
 
     updateUser = (user) => {
+        this.props.editUser(user)
     }
 
     deleteUser = (user) => {

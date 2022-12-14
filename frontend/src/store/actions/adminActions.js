@@ -57,6 +57,35 @@ export const deleteUserFail = () => (toast.error("Delete user fail"), {
     type: actionTypes.DELETE_USER_FAIL
 })
 
+//Edit User
+export const editUser = (data) => {
+    return async (dispatch, getState,) => {
+        console.log(data)
+        try {
+            let res = await updateUserApi(data)
+            console.log('res: ', res)
+            if (res && res.data.errCode == 0) {
+                dispatch(editUserSuccess())
+                dispatch(fetchAllUser())
+            } else {
+                dispatch(editUserFail())
+            }
+
+        } catch (e) {
+            console.log("e", e)
+            dispatch(deleteUserFail())
+        }
+    }
+
+}
+export const editUserSuccess = () => (toast.success("Edit user success"), {
+    type: actionTypes.EDIT_USER_SUCCESS
+
+})
+export const editUserFail = () => (toast.error("Edit user fail"), {
+    type: actionTypes.EDIT_USER_FAIL
+})
+
 
 //Gender
 export const fetchGenderStart = () => {

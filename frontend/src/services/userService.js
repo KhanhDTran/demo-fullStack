@@ -32,8 +32,19 @@ const deleteUserApi = (id) => {
     return instance.delete('/api/delete-user', { data: { id: id } })
 }
 
-const updateUserApi = (id, email, address, firstName, lastName, phoneNumber) => {
-    return instance.put('/api/update-user', { id, email, address, firstName, lastName, phoneNumber })
+const updateUserApi = (data) => {
+    console.log(data, '---------------------')
+    return instance.put('/api/update-user', {
+        id: data.id,
+        address: data.address,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        phoneNumber: data.phoneNumber,
+        roleId: data.roleId,
+        positionId: data.positionId,
+        gender: data.gender,
+        image: data.image.name
+    })
 }
 
 const getAllCodeApi = (inputType) => {
