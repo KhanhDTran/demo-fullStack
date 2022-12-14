@@ -20,35 +20,35 @@ class MedicalFacility extends Component {
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-medicalFacility' />
+                                <img alt='' className='img-medicalFacility' />
                                 <div>Bệnh viện  </div>
                             </div>
 

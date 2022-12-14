@@ -28,35 +28,35 @@ class Specialty extends Component {
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
                             <div className='section-box'>
-                                <img className='img-specialty' />
+                                <img alt='' className='img-specialty' />
                                 <div>Cơ xương khớp </div>
                             </div>
 

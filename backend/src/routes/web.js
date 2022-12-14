@@ -1,6 +1,10 @@
 import express from "express"
 import userApi from "../api/userApi"
 import loginApi from "../api/loginApi"
+import doctorApi from '../api/doctorApi'
+
+
+
 require('dotenv').config()
 
 let router = express.Router()
@@ -19,6 +23,9 @@ let initWebRoute = (app) => {
     router.post('/api/login', loginApi.handleLogin)
 
     router.get('/api/allcodes', userApi.getAllCode)
+
+    router.get('/api/top-doctor-home', doctorApi.getTopDoctorHome)
+
     return app.use('/', router)
 
 }

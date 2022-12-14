@@ -56,7 +56,7 @@ class TableUserManage extends Component {
                     <tbody>
                         {users && users.map((item, index) => {
                             return (
-                                <tr>
+                                <tr key={index}>
                                     <th >{item.email}</th>
                                     <th >{item.firstName}</th>
                                     <th >{item.lastName}</th>

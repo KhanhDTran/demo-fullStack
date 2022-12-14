@@ -219,7 +219,8 @@ class UserRedux extends Component {
                             </div>
                             <div className='col-3'>
                                 <label><FormattedMessage id='manage-user.email' /></label>
-                                <input className='form-control' type='email' value={this.state.email} disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}
+                                <input className='form-control' type='email' value={this.state.email}
+                                    disabled={this.state.action === CRUD_ACTIONS.EDIT ? true : false}
                                     onChange={(e) => this.handleOnchangeInput(e, 'email')} name='email' ></input>
                             </div>
                             <div className='col-3'>
@@ -253,7 +254,7 @@ class UserRedux extends Component {
                                 <select value={this.state.gender} id="inputState" className="form-control" onChange={(e) => this.handleOnchangeInput(e, 'gender')}>
                                     {genders && genders.length > 0 && genders.map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
+                                            <option key={index} value={item.keyMap}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
                                         )
                                     })}
                                 </select>
@@ -264,7 +265,7 @@ class UserRedux extends Component {
                                 <select value={this.state.role} id="inputState" className="form-control" onChange={(e) => this.handleOnchangeInput(e, 'role')}>
                                     {roles && roles.length > 0 && roles.map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
+                                            <option key={index} value={item.keyMap}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
                                         )
                                     })}
 
@@ -276,7 +277,7 @@ class UserRedux extends Component {
                                 <select value={this.state.position} id="inputState" className="form-control" onChange={(e) => this.handleOnchangeInput(e, 'position')}>
                                     {positions && positions.length > 0 && positions.map((item, index) => {
                                         return (
-                                            <option key={index} value={item.key}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
+                                            <option key={index} value={item.keyMap}>{language === LANGUAGES.EN ? item.valueEn : item.valueVi}</option>
                                         )
                                     })}
                                 </select>

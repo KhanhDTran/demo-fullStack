@@ -51,4 +51,14 @@ const getAllCodeApi = (inputType) => {
 }
 
 
-export { loginApi, getUsersApi, createUserApi, deleteUserApi, updateUserApi, getAllCodeApi }
+const getTopDoctorHome = (limit) => {
+    return instance.get(`/api/top-doctor-home?limit=${limit}`)
+}
+
+export {
+    loginApi, getUsersApi,
+    createUserApi, deleteUserApi,
+    updateUserApi, getAllCodeApi,
+    getTopDoctorHome,
+
+}

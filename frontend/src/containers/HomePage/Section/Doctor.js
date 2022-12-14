@@ -3,10 +3,14 @@ import { connect } from 'react-redux';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-
+import * as actions from '../../../store/actions'
 
 
 class Doctor extends Component {
+
+    componentDidMount() {
+        this.props.loadTopDoctors()
+    }
 
     render() {
 
@@ -22,7 +26,7 @@ class Doctor extends Component {
                             <div className='section-box'>
                                 <div className="section-container">
                                     <div className='img-doctor-container'>
-                                        <img className='img-doctor' />
+                                        <img alt='' className='img-doctor' />
                                     </div>
                                     <div className="position text-center">
                                         <div>Bác sĩ   </div>
@@ -32,9 +36,8 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className="section-container">
-
                                     <div className='img-doctor-container'>
-                                        <img className='img-doctor' />
+                                        <img alt='' className='img-doctor' />
                                     </div>
                                     <div className="position text-center">
                                         <div>Bác sĩ   </div>
@@ -44,9 +47,8 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className="section-container">
-
                                     <div className='img-doctor-container'>
-                                        <img className='img-doctor' />
+                                        <img alt='' className='img-doctor' />
                                     </div>
                                     <div className="position text-center">
                                         <div>Bác sĩ   </div>
@@ -56,7 +58,7 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className='img-doctor-container'>
-                                    <img className='img-doctor' />
+                                    <img alt='' className='img-doctor' />
                                 </div>
                                 <div className="position text-center">
                                     <div>Bác sĩ   </div>
@@ -65,7 +67,7 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className='img-doctor-container'>
-                                    <img className='img-doctor' />
+                                    <img alt='' className='img-doctor' />
                                 </div>
                                 <div className="position text-center">
                                     <div>Bác sĩ   </div>
@@ -74,7 +76,7 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className='img-doctor-container'>
-                                    <img className='img-doctor' />
+                                    <img alt='' className='img-doctor' />
                                 </div>
                                 <div className="position text-center">
                                     <div>Bác sĩ   </div>
@@ -83,7 +85,7 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className='img-doctor-container'>
-                                    <img className='img-doctor' />
+                                    <img alt='' className='img-doctor' />
                                 </div>
                                 <div className="position text-center">
                                     <div>Bác sĩ   </div>
@@ -92,7 +94,7 @@ class Doctor extends Component {
                             </div>
                             <div className='section-box'>
                                 <div className='img-doctor-container'>
-                                    <img className='img-doctor' />
+                                    <img alt='' className='img-doctor' />
                                 </div>
                                 <div className="position text-center">
                                     <div>Bác sĩ   </div>
@@ -117,6 +119,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        loadTopDoctors: () => dispatch(actions.fetchTopDoctors())
     };
 };
 

@@ -1,5 +1,9 @@
 import actionTypes from './actionTypes';
-import { getAllCodeApi, createUserApi, getUsersApi, deleteUserApi, updateUserApi } from '../../services/userService';
+import {
+    getAllCodeApi, createUserApi,
+    getUsersApi, deleteUserApi,
+    updateUserApi, getTopDoctorHome
+} from '../../services/userService';
 import { toast } from "react-toastify"
 
 
@@ -86,7 +90,6 @@ export const editUserFail = () => (toast.error("Edit user fail"), {
     type: actionTypes.EDIT_USER_FAIL
 })
 
-
 //Gender
 export const fetchGenderStart = () => {
     return async (dispatch, getState,) => {
@@ -171,6 +174,7 @@ export const fetchRoleFail = () => ({
 //Get Users
 export const fetchAllUser = () => {
     return async (dispatch, getState,) => {
+
         try {
             let res = await getUsersApi()
             if (res && res.data.errCode == 0) {
@@ -195,4 +199,26 @@ export const fetchAllUserSuccess = (data) => ({
 })
 export const fetchAllUserFail = () => ({
     type: actionTypes.FETCH_USER_FAIL
+})
+
+export const fetchTopDoctors = () => {
+    return async (dispatch, getState) => {
+
+        try {
+            let res = await getTopDoctorHome('3')
+            console.log("RES:", res)
+            dispatch(fetchTopDoctorsSuccess())
+        } catch (e) {
+            console.log(e)
+            dispatch(fetchTopDoctorsFail())
+        }
+    }
+}
+export const fetchTopDoctorsSuccess = (data) => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+    users: data
+
+})
+export const fetchTopDoctorsFail = () => ({
+    type: actionTypes.FETCH_TOP_DOCTOR_FAIL
 })
