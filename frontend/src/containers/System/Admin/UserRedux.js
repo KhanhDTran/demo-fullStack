@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { LANGUAGES, CRUD_ACTIONS } from '../../../utils';
+import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from '../../../utils';
 import * as actions from "../../../store/actions"
 import './UserRedux.scss'
 import Lightbox from 'react-image-lightbox';
@@ -33,6 +33,10 @@ class UserRedux extends Component {
         }
     }
     handleEditUser = (user) => {
+        let imgBase64 = ''
+        if (user.image) {
+            imgBase64 = new Buffer(user.image, 'base64').toString('binary')
+        }
         this.setState({
             id: user.id,
             email: user.email,
@@ -44,7 +48,7 @@ class UserRedux extends Component {
             gender: user.gender,
             role: user.roleId,
             position: user.positionId,
-            image: user.image ? user.image : "",
+            previewImgUrl: imgBase64,
             action: CRUD_ACTIONS.EDIT
 
         })
@@ -66,7 +70,19 @@ class UserRedux extends Component {
         }
         this.props.editUser(data)
         this.setState({
-            action: ''
+            action: '',
+            email: '',
+            password: '',
+            phoneNumber: '',
+            address: '',
+            firstName: '',
+            lastName: '',
+            gender: '',
+            role: '',
+            position: '',
+            image: '',
+            action: "",
+            previewImgUrl: ""
         })
 
     }
@@ -121,14 +137,15 @@ class UserRedux extends Component {
         }
     }
 
-
-    handleImage = (e) => {
-        if (e.target.files) {
-            let objectUrl = URL.createObjectURL(e.target.files[0])
+    handleImage = async (e) => {
+        let file = e.target.files[0]
+        if (file) {
+            let base64 = await CommonUtils.getBase64(file)
             this.setState({
-                previewImgUrl: objectUrl,
-                image: e.target.files[0]
-            })
+                previewImgUrl: URL.createObjectURL(file),
+                image: base64
+            }, () => { })
+
         }
     }
 

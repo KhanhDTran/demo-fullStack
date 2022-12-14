@@ -49,7 +49,7 @@ class TableUserManage extends Component {
                             <th>Gender</th>
                             <th>Role</th>
                             <th>Position</th>
-                            <th>Image</th>
+                            {/* <th>Image</th> */}
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -57,16 +57,16 @@ class TableUserManage extends Component {
                         {users && users.map((item, index) => {
                             return (
                                 <tr>
-                                    <th>{item.email}</th>
-                                    <th>{item.firstName}</th>
-                                    <th>{item.lastName}</th>
-                                    <th>{item.address}</th>
-                                    <th>{item.phoneNumber}</th>
-                                    <th>{item.gender}</th>
-                                    <th>{item.roleId}</th>
-                                    <th>{item.positionId}</th>
-                                    <th>{item.image}</th>
-                                    <th><button onClick={() => this.updateUser(item)}>update</button>
+                                    <th >{item.email}</th>
+                                    <th >{item.firstName}</th>
+                                    <th >{item.lastName}</th>
+                                    <th >{item.address}</th>
+                                    <th >{item.phoneNumber}</th>
+                                    <th >{item.gender}</th>
+                                    <th >{item.roleId}</th>
+                                    <th >{item.positionId}</th>
+                                    {/* <th >{item.image}</th> */}
+                                    <th ><button onClick={() => this.updateUser(item)}>update</button>
                                         <button onClick={() => this.deleteUser(item)}>Delete</button>
                                     </th>
                                 </tr>

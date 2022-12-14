@@ -24,7 +24,7 @@ const createUserApi = (data) => {
         roleId: data.roleId,
         positionId: data.positionId,
         gender: data.gender,
-        image: data.image.name
+        image: data.image
     })
 }
 
@@ -33,7 +33,6 @@ const deleteUserApi = (id) => {
 }
 
 const updateUserApi = (data) => {
-    console.log(data, '---------------------')
     return instance.put('/api/update-user', {
         id: data.id,
         address: data.address,
@@ -43,7 +42,7 @@ const updateUserApi = (data) => {
         roleId: data.roleId,
         positionId: data.positionId,
         gender: data.gender,
-        image: data.image.name
+        image: data.image
     })
 }
 

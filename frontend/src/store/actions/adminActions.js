@@ -141,7 +141,6 @@ export const fetchPositionFail = () => ({
     type: actionTypes.FETCH_POSITION_FAIL
 })
 
-
 //Role
 export const fetchRoleStart = () => {
     return async (dispatch, getState,) => {
@@ -160,7 +159,6 @@ export const fetchRoleStart = () => {
     }
 
 }
-
 
 export const fetchRoleSuccess = (roleData) => ({
     type: actionTypes.FETCH_ROLE_SUCCESS,

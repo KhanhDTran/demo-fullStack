@@ -8,6 +8,7 @@ let createUser = async (data) => {
         try {
             let hashedPassword = hashPassword(data.password)
             console.log(hashedPassword, '----------------------------')
+
             await db.User.create({
                 email: data.email,
                 password: hashedPassword,
@@ -16,7 +17,7 @@ let createUser = async (data) => {
                 address: data.address,
                 phoneNumber: data.phoneNumber,
                 gender: data.gender,
-                image: data.image,
+                image: data.image ? data.image : "",
                 roleId: data.roleId,
                 positionId: data.positionId
             })
@@ -37,7 +38,7 @@ let updateUser = async (user) => {
                 address: user.address,
                 phoneNumber: user.phoneNumber,
                 gender: user.gender,
-                image: '',
+                image: user.image,
                 positionId: user.positionId
             },
                 { where: { id: user.id } })
