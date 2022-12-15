@@ -46,66 +46,69 @@ class HomeHeader extends Component {
                         <span className={language === 'en' ? 'language-en active' : 'language-en'} onClick={() => this.changeLanguage(LANGUAGES.EN)}>EN</span>
                     </div>
                 </div>
-                <div className='home-header-banner'>
-                    <div className='content-up'>
 
-                        <div className='title1'><FormattedMessage id="banner.title1" /></div>
-                        <div className='title2'><FormattedMessage id="banner.title2" /></div>
-                        <div className='search'>
-                            <i class="fa fa-search" aria-hidden="true"></i>
-                            <input type='text' placeholder='Tìm bác sĩ....' />
+                {this.props.isShowBanner &&
+                    <div className='home-header-banner'>
+                        <div className='content-up'>
+
+                            <div className='title1'><FormattedMessage id="banner.title1" /></div>
+                            <div className='title2'><FormattedMessage id="banner.title2" /></div>
+                            <div className='search'>
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                <input type='text' placeholder='Tìm bác sĩ....' />
+                            </div>
                         </div>
-                    </div>
-                    <div className='content-down'>
-                        <ul>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
-                                    Khám Chuyên Khoa
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
-                                    Khám Từ xa
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
-                                    Khám Tổng Quát
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
-                                    Xét nghiệm y học
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
-                                    Sức khỏe tinh thần
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
+                        <div className='content-down'>
+                            <ul>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
+                                        Khám Chuyên Khoa
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
+                                        Khám Từ xa
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
+                                        Khám Tổng Quát
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
+                                        Xét nghiệm y học
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
+                                        Sức khỏe tinh thần
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
 
-                                    Khám Nha Khoa
-                                </span>
-                            </li>
-                            <li>
-                                <i class="fa fa-medkit"></i>
-                                <span className='title-options'>
+                                        Khám Nha Khoa
+                                    </span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-medkit"></i>
+                                    <span className='title-options'>
 
-                                    Gói phẫu thuật
-                                </span>
-                            </li>
-                        </ul>
+                                        Gói phẫu thuật
+                                    </span>
+                                </li>
+                            </ul>
 
-                    </div>
-                </div>
+                        </div>
+                    </div>}
+
             </React.Fragment>
         )
     }

@@ -87,7 +87,7 @@ const getDoctorDetailById = (id) => {
                 let data = await db.User.findOne({
                     where: { id: id },
                     attributes: {
-                        exclude: ['password', 'image'],
+                        exclude: ['password'],
                     },
                     include: [
                         { model: db.Markdown, attributes: ['contentHTML', 'contentMarkdown', 'description'] },
@@ -96,6 +96,12 @@ const getDoctorDetailById = (id) => {
                     raw: true,
                     nest: true
                 })
+                if (data && data.image) {
+                    data.image = new Buffer(data.image, 'base64').toString('binary')
+                }
+                if (!data) {
+                    data = {}
+                }
                 resolve({
                     errCode: 0,
                     data: data
@@ -107,9 +113,15 @@ const getDoctorDetailById = (id) => {
     })
 }
 
+// const getDoctorDetailInfo = (id) => {
+
+// }
+
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     getAllDoctor: getAllDoctor,
     createDoctorInfo: createDoctorInfo,
-    getDoctorDetailById: getDoctorDetailById
+    getDoctorDetailById: getDoctorDetailById,
+
 }

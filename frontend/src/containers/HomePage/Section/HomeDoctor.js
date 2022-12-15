@@ -5,8 +5,9 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import * as actions from '../../../store/actions'
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
 
-class Doctor extends Component {
+class HomeDoctor extends Component {
 
     constructor(props) {
         super(props)
@@ -25,6 +26,10 @@ class Doctor extends Component {
                 arrDoctors: this.props.topDoctors
             })
         }
+    }
+
+    handleViewDoctorDetail = (doctor) => {
+        this.props.history.push(`/doctor-detail/${doctor.id}`)
     }
 
     render() {
@@ -52,10 +57,10 @@ class Doctor extends Component {
                                 return (
                                     <div className='section-box' key={index}>
                                         <div className="section-container">
-                                            <div className='img-doctor-container'>
-                                                <div className='img-doctor' style={{ backgroundImage: `url(${img64})` }} />
+                                            <div className='img-doctor-container' onClick={() => this.handleViewDoctorDetail(item)}>
+                                                <div className='img-doctor' style={{ backgroundImage: `url(${img64 ? img64 : ""})` }} />
                                             </div>
-                                            <div className="position text-center">
+                                            <div className="position text-center" onClick={() => this.handleViewDoctorDetail(item)}>
                                                 <div> {language === 'vi' ? nameVi : nameEn}
                                                 </div>
                                                 <div>Chuyên khoa</div>
@@ -87,5 +92,5 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default
-    connect(mapStateToProps, mapDispatchToProps)(Doctor);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(HomeDoctor));

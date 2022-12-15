@@ -139,7 +139,6 @@
     margin: 0 auto;
 
     .img-doctor {
-        cursor: pointer;
         // background: url('../../assets/images/doctor.jpg') center center no-repeat;
         border-radius: 50%;
         background-size: cover;
@@ -157,10 +156,16 @@
 }
 
 .section-doctor {
-    height: 350px;
 
 
     .section-box {
+        height: 350px;
+        cursor: pointer;
+
+        &:hover {
+            color: Blue;
+        }
+
         .section-container {
             border: 1px solid #c3bbbb;
             border-radius: 5px;
@@ -170,7 +175,6 @@
                 height: 120px;
                 border-radius: 50%;
             }
-
         }
     }
 }

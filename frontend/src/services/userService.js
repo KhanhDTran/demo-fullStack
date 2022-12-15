@@ -63,11 +63,15 @@ const createDoctorInfo = (data) => {
     return instance.post('/api/create-doctor-info', { data })
 }
 
+const getDoctorDetailInfo = (id) => {
+    return instance.get(`/api/get-doctor-detail-by-id?id=${id}`)
+}
+
 export {
     loginApi, getUsersApi,
     createUserApi, deleteUserApi,
     updateUserApi, getAllCodeApi,
     getTopDoctorHome, getAllDoctorApi,
-    createDoctorInfo,
+    createDoctorInfo, getDoctorDetailInfo
 
 }
