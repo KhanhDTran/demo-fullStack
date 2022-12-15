@@ -201,22 +201,25 @@ export const fetchAllUserFail = () => ({
     type: actionTypes.FETCH_USER_FAIL
 })
 
+//Get doctors home
 export const fetchTopDoctors = () => {
     return async (dispatch, getState) => {
-
         try {
-            let res = await getTopDoctorHome('3')
-            console.log("RES:", res)
-            dispatch(fetchTopDoctorsSuccess())
+            let res = await getTopDoctorHome('12')
+            if (res && res.data.errCode === 0) {
+                dispatch(fetchTopDoctorsSuccess(res.data.data))
+            } else {
+                dispatch(fetchTopDoctorsFail())
+            }
         } catch (e) {
-            console.log(e)
+            console.log('Fetch top doctors home fail: ', e)
             dispatch(fetchTopDoctorsFail())
         }
     }
 }
 export const fetchTopDoctorsSuccess = (data) => ({
     type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
-    users: data
+    doctors: data
 
 })
 export const fetchTopDoctorsFail = () => ({

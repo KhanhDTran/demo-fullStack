@@ -20,7 +20,7 @@ class About extends Component {
                             <iframe height="300" width="500"
                                 src="https://www.youtube.com/embed/FAY1K2aUg5g" title="How to get embed code 
                         from youtube" frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
-                        encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                         </div>
                         <div className="content-right">
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos

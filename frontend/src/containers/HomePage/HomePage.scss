@@ -140,7 +140,7 @@
 
     .img-doctor {
         cursor: pointer;
-        background: url('../../assets/images/doctor.jpg') center center no-repeat;
+        // background: url('../../assets/images/doctor.jpg') center center no-repeat;
         border-radius: 50%;
         background-size: cover;
     }
@@ -159,10 +159,17 @@
 .section-doctor {
     height: 350px;
 
+
     .section-box {
         .section-container {
             border: 1px solid #c3bbbb;
             border-radius: 5px;
+
+            .img-doctor {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+            }
 
         }
     }

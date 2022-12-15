@@ -4,16 +4,32 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import * as actions from '../../../store/actions'
-
+import { FormattedMessage } from 'react-intl';
 
 class Doctor extends Component {
+
+    constructor(props) {
+        super(props)
+        this.state = {
+            arrDoctors: []
+        }
+    }
 
     componentDidMount() {
         this.props.loadTopDoctors()
     }
 
-    render() {
+    componentDidUpdate(preProps, prevState, snapshot) {
+        if (preProps.topDoctors !== this.props.topDoctors) {
+            this.setState({
+                arrDoctors: this.props.topDoctors
+            })
+        }
+    }
 
+    render() {
+        let arrDoctors = this.state.arrDoctors
+        let language = this.props.language
         return (
             <div className="section-share section-doctor">
                 <div className='section-container'>
@@ -23,85 +39,31 @@ class Doctor extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...this.props.settings}>
-                            <div className='section-box'>
-                                <div className="section-container">
-                                    <div className='img-doctor-container'>
-                                        <img alt='' className='img-doctor' />
-                                    </div>
-                                    <div className="position text-center">
-                                        <div>Bác sĩ   </div>
-                                        <div>Chuyên khoa</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className="section-container">
-                                    <div className='img-doctor-container'>
-                                        <img alt='' className='img-doctor' />
-                                    </div>
-                                    <div className="position text-center">
-                                        <div>Bác sĩ   </div>
-                                        <div>Chuyên khoa</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className="section-container">
-                                    <div className='img-doctor-container'>
-                                        <img alt='' className='img-doctor' />
-                                    </div>
-                                    <div className="position text-center">
-                                        <div>Bác sĩ   </div>
-                                        <div>Chuyên khoa</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className='img-doctor-container'>
-                                    <img alt='' className='img-doctor' />
-                                </div>
-                                <div className="position text-center">
-                                    <div>Bác sĩ   </div>
-                                    <div>Chuyên khoa</div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className='img-doctor-container'>
-                                    <img alt='' className='img-doctor' />
-                                </div>
-                                <div className="position text-center">
-                                    <div>Bác sĩ   </div>
-                                    <div>Chuyên khoa</div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className='img-doctor-container'>
-                                    <img alt='' className='img-doctor' />
-                                </div>
-                                <div className="position text-center">
-                                    <div>Bác sĩ   </div>
-                                    <div>Chuyên khoa</div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className='img-doctor-container'>
-                                    <img alt='' className='img-doctor' />
-                                </div>
-                                <div className="position text-center">
-                                    <div>Bác sĩ   </div>
-                                    <div>Chuyên khoa</div>
-                                </div>
-                            </div>
-                            <div className='section-box'>
-                                <div className='img-doctor-container'>
-                                    <img alt='' className='img-doctor' />
-                                </div>
-                                <div className="position text-center">
-                                    <div>Bác sĩ   </div>
-                                    <div>Chuyên khoa</div>
-                                </div>
-                            </div>
+                            {arrDoctors && arrDoctors.length > 0 && arrDoctors.map((item, index) => {
 
+                                let img64 = ''
+                                if (item.image) {
+                                    img64 = new Buffer(item.image, 'base64').toString('binary')
+
+                                }
+                                let nameVi = `${item.positionData.valueVi} ${item.firstName} ${item.lastName}`
+                                let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`
+
+                                return (
+                                    <div className='section-box' key={index}>
+                                        <div className="section-container">
+                                            <div className='img-doctor-container'>
+                                                <div className='img-doctor' style={{ backgroundImage: `url(${img64})` }} />
+                                            </div>
+                                            <div className="position text-center">
+                                                <div> {language === 'vi' ? nameVi : nameEn}
+                                                </div>
+                                                <div>Chuyên khoa</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
                         </Slider>
                     </div>
                 </div>
@@ -113,7 +75,9 @@ class Doctor extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        topDoctors: state.admin.topDoctors,
+        language: state.app.language
     };
 };
 

@@ -52,6 +52,7 @@ class UserRedux extends Component {
             action: CRUD_ACTIONS.EDIT
 
         })
+        console.log(this.state.previewImgUrl)
     }
 
     editUser = () => {
@@ -103,21 +104,21 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux
             this.setState({
                 genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
         if (prevProps.rolesRedux !== this.props.rolesRedux) {
             let arrRoles = this.props.rolesRedux
             this.setState({
                 roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
             })
         }
         if (prevProps.positionRedux !== this.props.positionRedux) {
             let positionArr = this.props.positionRedux
             this.setState({
                 positionArr: positionArr,
-                position: positionArr && positionArr.length > 0 ? positionArr[0].key : ''
+                position: positionArr && positionArr.length > 0 ? positionArr[0].keyMap : ''
             })
         }
         if (prevProps.users !== this.props.users) {

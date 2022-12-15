@@ -8,12 +8,13 @@ const getTopDoctorHome = (limit) => {
                 where: { roleId: 'R2' },
                 // order: [['createdAt', 'DESC']],
                 attributes: {
-                    exclude: ['password', 'image'],
+                    exclude: ['password'],
                 },
                 include: [
-                    // { models: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
-                    { models: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'] }
-                ],
+
+                    { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                    { model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'] }],
+
                 raw: true,
                 nest: true
             })
