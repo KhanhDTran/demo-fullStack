@@ -12,8 +12,8 @@ const getTopDoctorHome = (limit) => {
                 },
                 include: [
                     { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
-                    { model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'] }],
-
+                    { model: db.Allcode, as: 'genderData', attributes: ['valueVi', 'valueEn'] }
+                ],
                 raw: true,
                 nest: true
             })
@@ -75,8 +75,41 @@ const createDoctorInfo = (data) => {
     })
 }
 
+const getDoctorDetailById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            if (!id) {
+                resolve({
+                    errCode: 1,
+                    message: "Missing parameter"
+                })
+            } else {
+                let data = await db.User.findOne({
+                    where: { id: id },
+                    attributes: {
+                        exclude: ['password', 'image'],
+                    },
+                    include: [
+                        { model: db.Markdown, attributes: ['contentHTML', 'contentMarkdown', 'description'] },
+                        { model: db.Allcode, as: 'positionData', attributes: ['valueVi', 'valueEn'] },
+                    ],
+                    raw: true,
+                    nest: true
+                })
+                resolve({
+                    errCode: 0,
+                    data: data
+                })
+            }
+        } catch (e) {
+            reject(e)
+        }
+    })
+}
+
 module.exports = {
     getTopDoctorHome: getTopDoctorHome,
     getAllDoctor: getAllDoctor,
-    createDoctorInfo: createDoctorInfo
+    createDoctorInfo: createDoctorInfo,
+    getDoctorDetailById: getDoctorDetailById
 }
