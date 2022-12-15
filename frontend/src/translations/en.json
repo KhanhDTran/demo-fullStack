@@ -1,6 +1,6 @@
 {
     "banner": {
-        "title1": "MEDICAL FOUNDATION",
+        "title1": "MEDICAL PLATFORM",
         "title2": "COMPREHENSIVE HEALTH CARE"
     },
     "homeHeader": {
@@ -56,5 +56,9 @@
         "image": "Image",
         "save": "Save",
         "upload": "Upload image"
+    },
+    "home-page": {
+        "outstanding-doctors": "This weak's featured doctos",
+        "more-info": "More infor"
     }
 }

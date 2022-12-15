@@ -49,7 +49,8 @@ class UserRedux extends Component {
             role: user.roleId,
             position: user.positionId,
             previewImgUrl: imgBase64,
-            action: CRUD_ACTIONS.EDIT
+            action: CRUD_ACTIONS.EDIT,
+            image: imgBase64
 
         })
         console.log(this.state.previewImgUrl)
@@ -174,6 +175,9 @@ class UserRedux extends Component {
             image: this.state.image,
             roleId: this.state.role,
             positionId: this.state.position
+        })
+        this.setState({
+            previewImgUrl: ''
         })
 
     }

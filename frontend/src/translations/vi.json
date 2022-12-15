@@ -56,5 +56,9 @@
         "image": "Ảnh",
         "save": "Lưu",
         "upload": "Tải ảnh "
+    },
+    "home-page": {
+        "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
+        "more-info": "Tìm kiếm"
     }
 }
