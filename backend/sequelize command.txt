@@ -14,10 +14,10 @@ tao model:
 	npx sequelize-cli model:generate --name User --attributes email:string,password:string,firstName:string,lastName:string,address:string,phoneNumber:string,gender:string,image:blob,roleId:string,positionId:string
 	npx sequelize-cli model:generate --name History --attributes patientId:integer,doctorId:integer,description:text,files:text
 	npx sequelize-cli model:generate --name Clinic --attributes name:string,address:string,description:text,image:string
-	npx sequelize-cli model:generate --name Specialty --attributes name:string,description:text,image:string
+	npx sequelize-cli model:generate --name Specialty --attributes name:string,description:text,image:blob
 	npx sequelize-cli model:generate --name Schedule --attributes currentNumber:integer,maxNumber:integer,date:date,timeType:string,doctorId:integer
 	npx sequelize-cli model:generate --name Booking --attributes statusId:string,doctorId:integer,patientId:integer,date:date,timeType:string
 	npx sequelize-cli model:generate --name Allcode --attributes  keyMap:string,type:string,valueEn:string,valueVi:string
 	npx sequelize-cli model:generate --name Doctor_clinic_specialty --attributes doctorId:integer,clinicId:integer,specialtyId:integer  
-    
+    npx sequelize-cli model:generate --name Markdown --attributes contentHTML:longtext,contentMarkdown:longtext,description:longtext,doctorId:integer,specialtyId:integer,clinicId:integer
 
