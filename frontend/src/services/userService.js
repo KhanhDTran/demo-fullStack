@@ -50,15 +50,24 @@ const getAllCodeApi = (inputType) => {
     return instance.get(`/api/allcodes?type=${inputType}`)
 }
 
+const getAllDoctorApi = () => {
+    return instance.get('/api/get-all-doctors')
+}
+
 
 const getTopDoctorHome = (limit) => {
     return instance.get(`/api/top-doctor-home?limit=${limit}`)
+}
+
+const createDoctorInfo = (data) => {
+    return instance.post('/api/create-doctor-info', { data })
 }
 
 export {
     loginApi, getUsersApi,
     createUserApi, deleteUserApi,
     updateUserApi, getAllCodeApi,
-    getTopDoctorHome,
+    getTopDoctorHome, getAllDoctorApi,
+    createDoctorInfo,
 
 }

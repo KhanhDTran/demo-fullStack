@@ -2,9 +2,41 @@ import actionTypes from './actionTypes';
 import {
     getAllCodeApi, createUserApi,
     getUsersApi, deleteUserApi,
-    updateUserApi, getTopDoctorHome
+    updateUserApi, getTopDoctorHome,
+    getAllDoctorApi, createDoctorInfo,
+
 } from '../../services/userService';
 import { toast } from "react-toastify"
+
+
+
+
+//Create doctor detail info
+export const fetchCreateDoctorInfo = (data) => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await createDoctorInfo(data)
+            if (res && res.data.errCode === 0) {
+                dispatch(fetchCreateDoctorSuccess(res.data.data))
+                toast.success("Create doctor infor success")
+            } else {
+                dispatch(fetchCreateDoctorFail())
+                toast.error("Create doctor infor fail")
+            }
+        } catch (e) {
+            dispatch(fetchCreateDoctorFail())
+            toast.error("Create doctor infor fail")
+        }
+    }
+}
+
+export const fetchCreateDoctorSuccess = (data) => ({
+    type: actionTypes.CREATE_DOCTOR_INFO_SUCCESS,
+
+})
+export const fetchCreateDoctorFail = () => ({
+    type: actionTypes.CREATE_DOCTOR_INFO_FAIL
+})
 
 
 //Create user
@@ -108,7 +140,6 @@ export const fetchGenderStart = () => {
     }
 
 }
-
 export const fetchGenderSuccess = (genderData) => ({
     type: actionTypes.FETCH_GENDER_SUCCESS,
     genderData: genderData
@@ -135,7 +166,6 @@ export const fetchPositionStart = () => {
     }
 
 }
-
 export const fetchPositionSuccess = (positionData) => ({
     type: actionTypes.FETCH_POSITION_SUCCESS,
     positionData: positionData
@@ -162,7 +192,6 @@ export const fetchRoleStart = () => {
     }
 
 }
-
 export const fetchRoleSuccess = (roleData) => ({
     type: actionTypes.FETCH_ROLE_SUCCESS,
     roleData: roleData
@@ -224,4 +253,29 @@ export const fetchTopDoctorsSuccess = (data) => ({
 })
 export const fetchTopDoctorsFail = () => ({
     type: actionTypes.FETCH_TOP_DOCTOR_FAIL
+})
+
+//Get all doctors
+export const fetchAllDoctors = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await getAllDoctorApi()
+            if (res && res.data.errCode === 0) {
+                dispatch(fetchAllDoctorsSuccess(res.data.data))
+            } else {
+                dispatch(fetchAllDoctorsFail())
+            }
+        } catch (e) {
+            console.log('Fetch all doctors fail: ', e)
+            dispatch(fetchAllDoctorsFail())
+        }
+    }
+}
+export const fetchAllDoctorsSuccess = (data) => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+    doctors: data
+
+})
+export const fetchAllDoctorsFail = () => ({
+    type: actionTypes.FETCH_ALL_DOCTOR_FAIL
 })
