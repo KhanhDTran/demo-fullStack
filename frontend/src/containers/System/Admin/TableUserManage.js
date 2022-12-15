@@ -2,19 +2,9 @@ import * as actions from "../../../store/actions"
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './TableUserManage.scss'
-import MarkdownIt from 'markdown-it';
-import MdEditor from 'react-markdown-editor-lite';
-import 'react-markdown-editor-lite/lib/index.css';
-
-const mdParser = new MarkdownIt(/* Markdown-it options */);
-function handleEditorChange({ html, text }) {
-    console.log('handleEditorChange', html, text);
-}
 
 
 class TableUserManage extends Component {
-
-
 
     constructor(props) {
         super(props)
@@ -88,17 +78,11 @@ class TableUserManage extends Component {
                         </tbody>
                     </table>
 
-
-
                 </div>
-                <MdEditor style={{ height: '500px' }}
-                    renderHTML={text => mdParser.render(text)}
-                    onChange={handleEditorChange} />
-            </React.Fragment>
 
+            </React.Fragment>
         );
     }
-
 }
 
 const mapStateToProps = state => {
