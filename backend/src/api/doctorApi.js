@@ -54,23 +54,23 @@ const getDoctorDetailById = async (req, res) => {
   }
 };
 
-// const getDoctorDetailInfo = async (req, res) => {
-//     try {
-//         let response = await docterService.getDoctorDetailInfo(req.query.id)
-
-//     } catch (e) {
-//         return res.status(200).json({
-//             errCode: -1,
-//             meessage: "Error from server"
-//         })
-//     }
-
-// }
+const createSchedule = async (req, res) => {
+  // console.log(req.body);
+  try {
+    let response = await docterService.createSchedule(req);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(200).json({
+      errCode: -1,
+      meessage: "Error from server",
+    });
+  }
+};
 
 module.exports = {
-  getTopDoctorHome: getTopDoctorHome,
-  getAllDoctor: getAllDoctor,
-  createDoctorInfo: createDoctorInfo,
-  getDoctorDetailById: getDoctorDetailById,
-  // getDoctorDetailInfo: getDoctorDetailInfo,
+  getTopDoctorHome,
+  getAllDoctor,
+  createDoctorInfo,
+  getDoctorDetailById,
+  createSchedule,
 };

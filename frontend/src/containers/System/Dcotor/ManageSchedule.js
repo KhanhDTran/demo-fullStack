@@ -8,6 +8,7 @@ import { LANGUAGES, DATE_FORMAT } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
 import moment from "moment";
+import { saveScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class ManageSchedule extends Component {
     this.state = {
       listDoctors: [],
       selectedDoctor: null,
-      currentDate: "",
+      currentDate: null,
       rangeTime: [],
       selectedTime: false,
     };
@@ -81,19 +82,14 @@ class ManageSchedule extends Component {
       selectedTime: !this.state.selectedTime,
     });
   };
-  handleSaveSchedule = () => {
+  handleSaveSchedule = async () => {
     let result = [];
-
     let { rangeTime, selectedDoctor, currentDate } = this.state;
-    if (!currentDate) {
-      toast.error("Invalid date");
-      return;
-    }
     if (!selectedDoctor) {
       toast.error("Invalid selected doctor");
       return;
     }
-    let formattedDate = moment(currentDate).format(DATE_FORMAT.SEND_TO_SERVER);
+    let formattedDate = new Date(currentDate).getTime();
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
@@ -101,7 +97,7 @@ class ManageSchedule extends Component {
           let object = {};
           object.doctorId = selectedDoctor.value;
           object.date = formattedDate;
-          object.schedule = schedule.keyMap;
+          object.timeType = schedule.keyMap;
           result.push(object);
         });
       } else {
@@ -109,6 +105,13 @@ class ManageSchedule extends Component {
         return;
       }
     }
+    let data = {
+      arrSchedule: result,
+      doctorId: selectedDoctor.value,
+      date: formattedDate,
+    };
+    let res = await saveScheduleDoctor(data);
+    console.log(res);
   };
   render() {
     let { rangeTime } = this.state;
@@ -126,6 +129,7 @@ class ManageSchedule extends Component {
               </label>
               <Select
                 id="doctor"
+                placeholder="Select doctor..."
                 value={this.state.selectedDoctor}
                 onChange={this.handleChangeSelect}
                 options={this.state.listDoctors}
@@ -137,11 +141,11 @@ class ManageSchedule extends Component {
               </label>
               <DatePicker
                 id="date"
-                placeholder="Select date ..."
+                placeholder="Select date..."
                 onChange={this.handleOnchangeDatePicker}
                 className="form-control"
                 value={this.state.currentDate}
-                minDate={new Date().setHours(0, 0, 0, 0)}
+                minDate={new Date()}
               />
             </div>
             <div className="col-12 pick-hour-container">

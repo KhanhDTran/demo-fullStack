@@ -1,5 +1,7 @@
 import db from "../models/index";
-
+require("dotenv").config();
+import _ from "lodash";
+const MAX_NUMBER_SCHEDULE = process.env.MAX_NUMBER_SCHEDULE;
 const getTopDoctorHome = (limit) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -146,13 +148,60 @@ const getDoctorDetailById = (id) => {
   });
 };
 
-// const getDoctorDetailInfo = (id) => {
-
-//}
+const createSchedule = (req) => {
+  console.log(req.body);
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!req.body.arrSchedule || !req.body.doctorId || !req.body.date) {
+        resolve({
+          errCode: "1",
+          message: "Missing parameter",
+        });
+      } else {
+        let schedule = req.body.arrSchedule;
+        let doctorId = req.body.doctorId;
+        let date = req.body.date;
+        if (schedule && schedule.length > 0) {
+          schedule.map((item) => {
+            item.maxNumber = MAX_NUMBER_SCHEDULE;
+            return item;
+          });
+        }
+        // Tim trong db co ton tai ko
+        let exist = await db.Schedule.findAll({
+          where: { doctorId: doctorId, date: date },
+          attributes: ["timeType", "date", "doctorId", "maxNumber"],
+          raw: true,
+        });
+        // convert datatype date
+        if (exist && exist.length > 0) {
+          exist = exist.map((item) => {
+            item.date = new Date(item.date).getTime();
+            return item;
+          });
+        }
+        //so sanh khac nhau
+        let toCreate = _.differenceWith(schedule, exist, (a, b) => {
+          return a.timeType === b.timeType && a.date === b.date;
+        });
+        if (toCreate && toCreate.length > 0) {
+          await db.Schedule.bulkCreate(toCreate);
+        }
+        resolve({
+          errCode: 0,
+          message: "Create schedule success",
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 module.exports = {
-  getTopDoctorHome: getTopDoctorHome,
-  getAllDoctor: getAllDoctor,
-  createDoctorInfo: createDoctorInfo,
-  getDoctorDetailById: getDoctorDetailById,
+  getTopDoctorHome,
+  getAllDoctor,
+  createDoctorInfo,
+  getDoctorDetailById,
+  createSchedule,
 };

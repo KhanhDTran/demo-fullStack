@@ -65,6 +65,10 @@ const getDoctorDetailInfo = (id) => {
   return instance.get(`/api/get-doctor-detail-by-id?id=${id}`);
 };
 
+const saveScheduleDoctor = (data) => {
+  return instance.post("/api/create-schedule", data);
+};
+
 export {
   loginApi,
   getUsersApi,
@@ -76,4 +80,5 @@ export {
   getAllDoctorApi,
   createDoctorInfo,
   getDoctorDetailInfo,
+  saveScheduleDoctor,
 };
