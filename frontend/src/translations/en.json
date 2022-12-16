@@ -1,64 +1,67 @@
 {
-    "banner": {
-        "title1": "MEDICAL PLATFORM",
-        "title2": "COMPREHENSIVE HEALTH CARE"
+  "banner": {
+    "title1": "MEDICAL PLATFORM",
+    "title2": "COMPREHENSIVE HEALTH CARE"
+  },
+  "homeHeader": {
+    "specialty": "Specialty",
+    "searchDoctor": "Search Doctor",
+    "healthFacility": "Health Facility",
+    "selectRoom": "Select Room",
+    "doctor": "Doctor",
+    "selectDoctor": "Choose doctor",
+    "checkPack": "Health pack",
+    "healChecking": "Heal checking",
+    "welcome": "Welcome"
+  },
+  "menu": {
+    "system": {
+      "header": "System",
+      "system-administrator": {
+        "header": "System Administrator",
+        "user-manage": "User manage",
+        "product-manage": "Package manage",
+        "user-redux": "Manage user redux",
+        "register-package-group-or-account": "Register service package for group/account"
+      },
+      "system-parameter": {
+        "header": "System-parameter"
+      }
     },
-    "homeHeader": {
-        "specialty": "Specialty",
-        "searchDoctor": "Search Doctor",
-        "healthFacility": "Health Facility",
-        "selectRoom": "Select Room",
-        "doctor": "Doctor",
-        "selectDoctor": "Choose doctor",
-        "checkPack": "Health pack",
-        "healChecking": "Heal checking",
-        "welcome": "Welcome"
+    "admin": {
+      "manage-user": "User",
+      "manage-doctor": "Manage Doctor",
+      "manage-admin": "Manage Admin",
+      "crud": "CRUD User",
+      "crud-redux": "CRUD User Redux",
+      "clinic": "Clinic",
+      "manage-clinic": "Manage Clinic",
+      "specialty": "Specialty",
+      "manage-specialty": "Manage Specialty",
+      "handbook": "Handbook",
+      "manage-handbook": "Manage Handbook"
     },
-    "menu": {
-        "system": {
-            "header": "System",
-            "system-administrator": {
-                "header": "System Administrator",
-                "user-manage": "User manage",
-                "product-manage": "Package manage",
-                "user-redux": "Manage user redux",
-                "register-package-group-or-account": "Register service package for group/account"
-            },
-            "system-parameter": {
-                "header": "System-parameter"
-            }
-        },
-        "admin": {
-            "manage-user": "User",
-            "manage-doctor": "Manage Doctor",
-            "manage-admin": "Manage Admin",
-            "crud": "CRUD User",
-            "crud-redux": "CRUD User Redux",
-            "clinic": "Clinic",
-            "manage-clinic": "Manage Clinic",
-            "specialty": "Specialty",
-            "manage-specialty": "Manage Specialty",
-            "handbook": "Handbook",
-            "manage-handbook": "Manage Handbook"
-        }
-    },
-    "manage-user": {
-        "add": "Add new user",
-        "email": "Email",
-        "password": "Password",
-        "first-name": "First Name",
-        "last-name": "Last Name",
-        "phone-number": "Phone Number",
-        "address": "Address",
-        "role": "Role",
-        "gender": "Gender",
-        "position": "Position",
-        "image": "Image",
-        "save": "Save",
-        "upload": "Upload image"
-    },
-    "home-page": {
-        "outstanding-doctors": "This weak's featured doctos",
-        "more-info": "More infor"
+    "doctor": {
+      "manage-schedule": "Manage Doctor's Schedule"
     }
+  },
+  "manage-user": {
+    "add": "Add new user",
+    "email": "Email",
+    "password": "Password",
+    "first-name": "First Name",
+    "last-name": "Last Name",
+    "phone-number": "Phone Number",
+    "address": "Address",
+    "role": "Role",
+    "gender": "Gender",
+    "position": "Position",
+    "image": "Image",
+    "save": "Save",
+    "upload": "Upload image"
+  },
+  "home-page": {
+    "outstanding-doctors": "This weak's featured doctos",
+    "more-info": "More infor"
+  }
 }

@@ -5,7 +5,10 @@
     padding: 0 100px;
     display: flex;
     flex-direction: row;
-    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 40px;
+    // border: 1px solid black;
     // height: 120px;
 
     .content-left {
@@ -42,7 +45,7 @@
 
   .detail-info-doctor {
     padding: 0 100px;
-    background: #ccc;
+    background: #fff6f6;
     padding-top: 30px;
     padding-bottom: 10px;
   }

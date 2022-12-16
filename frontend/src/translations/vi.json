@@ -1,64 +1,67 @@
 {
-    "banner": {
-        "title1": "NỀN TẢNG Y TẾ",
-        "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN"
+  "banner": {
+    "title1": "NỀN TẢNG Y TẾ",
+    "title2": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN"
+  },
+  "homeHeader": {
+    "specialty": "Chuyên khoa",
+    "searchDoctor": "Tìm bác sĩ",
+    "healthFacility": "Cơ sở y tế",
+    "selectRoom": "Chọn phòng y tế",
+    "doctor": "Bác sĩ",
+    "selectDoctor": "Chọn bác sĩ",
+    "checkPack": "Gói khám",
+    "healChecking": "Khám sức khỏe",
+    "welcome": "Xin chào"
+  },
+  "menu": {
+    "system": {
+      "header": "Hệ thống",
+      "system-administrator": {
+        "header": "Quản trị hệ thống",
+        "user-manage": "Quản lý người sử dụng",
+        "product-manage": "Quản lý gói",
+        "user-redux": "Quản lý người dùng redux",
+        "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+      },
+      "system-parameter": {
+        "header": "Tham số hệ thống"
+      }
     },
-    "homeHeader": {
-        "specialty": "Chuyên khoa",
-        "searchDoctor": "Tìm bác sĩ",
-        "healthFacility": "Cơ sở y tế",
-        "selectRoom": "Chọn phòng y tế",
-        "doctor": "Bác sĩ",
-        "selectDoctor": "Chọn bác sĩ",
-        "checkPack": "Gói khám",
-        "healChecking": "Khám sức khỏe",
-        "welcome": "Xin chào"
+    "admin": {
+      "manage-user": "Người dùng",
+      "manage-doctor": "Quản lý bác sĩ",
+      "manage-admin": "Quản lý admin",
+      "crud": "CRUD user",
+      "crud-redux": "CRUD user redux",
+      "clinic": "Phòng khám",
+      "manage-clinic": "Quản lý phòng khám",
+      "specialty": "Chuyên khoa",
+      "manage-specialty": "Quản lý chuyên khoa",
+      "handbook": "Cẩm nang",
+      "manage-handbook": "Quản lý cẩm nang"
     },
-    "menu": {
-        "system": {
-            "header": "Hệ thống",
-            "system-administrator": {
-                "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "product-manage": "Quản lý gói",
-                "user-redux": "Quản lý người dùng redux",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
-            },
-            "system-parameter": {
-                "header": "Tham số hệ thống"
-            }
-        },
-        "admin": {
-            "manage-user": "Người dùng",
-            "manage-doctor": "Quản lý bác sĩ",
-            "manage-admin": "Quản lý admin",
-            "crud": "CRUD user",
-            "crud-redux": "CRUD user redux",
-            "clinic": "Phòng khám",
-            "manage-clinic": "Quản lý phòng khám",
-            "specialty": "Chuyên khoa",
-            "manage-specialty": "Quản lý chuyên khoa",
-            "handbook": "Cẩm nang",
-            "manage-handbook": "Quản lý cẩm nang"
-        }
-    },
-    "manage-user": {
-        "add": "Thêm mới người dùng",
-        "email": "Email",
-        "password": "Mật khẩu",
-        "first-name": "Họ",
-        "last-name": "Tên",
-        "phone-number": "Số điện thoại",
-        "address": "Địa chỉ",
-        "role": "Vai trò",
-        "gender": "Giới tính",
-        "position": "Vị trí",
-        "image": "Ảnh",
-        "save": "Lưu",
-        "upload": "Tải ảnh "
-    },
-    "home-page": {
-        "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
-        "more-info": "Tìm kiếm"
+    "doctor": {
+      "manage-schedule": "Quản lý kế hoạch khám bệnh"
     }
+  },
+  "manage-user": {
+    "add": "Thêm mới người dùng",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "first-name": "Họ",
+    "last-name": "Tên",
+    "phone-number": "Số điện thoại",
+    "address": "Địa chỉ",
+    "role": "Vai trò",
+    "gender": "Giới tính",
+    "position": "Vị trí",
+    "image": "Ảnh",
+    "save": "Lưu",
+    "upload": "Tải ảnh "
+  },
+  "home-page": {
+    "outstanding-doctors": "Bác sĩ nổi bật tuần qua",
+    "more-info": "Tìm kiếm"
+  }
 }
