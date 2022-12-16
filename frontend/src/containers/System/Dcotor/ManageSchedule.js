@@ -4,8 +4,11 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
-import { LANGUAGES } from "../../../utils";
+import { LANGUAGES, DATE_FORMAT } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
+import { toast } from "react-toastify";
+import moment from "moment";
+
 class ManageSchedule extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +17,7 @@ class ManageSchedule extends Component {
       selectedDoctor: null,
       currentDate: "",
       rangeTime: [],
+      selectedTime: false,
     };
   }
   componentDidMount() {
@@ -34,6 +38,13 @@ class ManageSchedule extends Component {
       });
     }
     if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
+      let data = this.props.allScheduleTime;
+      if (data && data.length > 0) {
+        data.map((item) => {
+          item.isSelected = false;
+          return item;
+        });
+      }
       this.setState({
         rangeTime: this.props.allScheduleTime,
       });
@@ -64,6 +75,41 @@ class ManageSchedule extends Component {
       currentDate: date[0],
     });
   };
+  handleClickTimeButton = (time) => {
+    time.isSelected = !time.isSelected;
+    this.setState({
+      selectedTime: !this.state.selectedTime,
+    });
+  };
+  handleSaveSchedule = () => {
+    let result = [];
+
+    let { rangeTime, selectedDoctor, currentDate } = this.state;
+    if (!currentDate) {
+      toast.error("Invalid date");
+      return;
+    }
+    if (!selectedDoctor) {
+      toast.error("Invalid selected doctor");
+      return;
+    }
+    let formattedDate = moment(currentDate).format(DATE_FORMAT.SEND_TO_SERVER);
+    if (rangeTime && rangeTime.length > 0) {
+      let selectedTime = rangeTime.filter((item) => item.isSelected === true);
+      if (selectedTime && selectedTime.length > 0) {
+        selectedTime.map((schedule) => {
+          let object = {};
+          object.doctorId = selectedDoctor.value;
+          object.date = formattedDate;
+          object.schedule = schedule.keyMap;
+          result.push(object);
+        });
+      } else {
+        toast.error("Invalid seleted time");
+        return;
+      }
+    }
+  };
   render() {
     let { rangeTime } = this.state;
     let { language } = this.props;
@@ -91,10 +137,11 @@ class ManageSchedule extends Component {
               </label>
               <DatePicker
                 id="date"
+                placeholder="Select date ..."
                 onChange={this.handleOnchangeDatePicker}
                 className="form-control"
-                value={this.state.currentDate[0]}
-                minDate={new Date()}
+                value={this.state.currentDate}
+                minDate={new Date().setHours(0, 0, 0, 0)}
               />
             </div>
             <div className="col-12 pick-hour-container">
@@ -102,17 +149,25 @@ class ManageSchedule extends Component {
                 rangeTime.length > 0 &&
                 rangeTime.map((item, index) => {
                   return (
-                    <button className="btn btn-success" key={item.id}>
+                    <button
+                      className={
+                        item.isSelected ? "button-time active" : "button-time"
+                      }
+                      key={item.id}
+                      onClick={() => this.handleClickTimeButton(item)}
+                    >
                       {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                     </button>
                   );
                 })}
             </div>
-            <div className="col-12">
-              <button className="btn btn-primary">
-                <FormattedMessage id={"manage-schedule.save"} />
-              </button>
-            </div>
+
+            <button
+              className="save-button"
+              onClick={() => this.handleSaveSchedule()}
+            >
+              <FormattedMessage id={"manage-schedule.save"} />
+            </button>
           </div>
         </div>
       </div>
