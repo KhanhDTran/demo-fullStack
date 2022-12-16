@@ -63,5 +63,11 @@
   "home-page": {
     "outstanding-doctors": "This weak's featured doctos",
     "more-info": "More infor"
+  },
+  "manage-schedule": {
+    "title": "Manage doctor's examination",
+    "select_doctor": "Select doctor",
+    "select-date": "Select date",
+    "save": "Save "
   }
 }

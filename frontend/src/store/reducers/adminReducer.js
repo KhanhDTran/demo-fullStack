@@ -7,10 +7,21 @@ const initialState = {
   users: [],
   topDoctors: [],
   allDoctors: [],
+  allScheduleTime: [],
 };
 
 const adminReducer = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS:
+      state.allScheduleTime = action.dataTime;
+      return {
+        ...state,
+      };
+    case actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAIL:
+      state.allScheduleTime = [];
+      return {
+        ...state,
+      };
     case actionTypes.FETCH_GENDER_START:
       return {
         ...state,

@@ -25,10 +25,8 @@ class Header extends Component {
     let menu = [];
     if (userInfo && !_.isEmpty(userInfo)) {
       let role = userInfo.roleId;
-      console.log(USER_ROLE.ADMIN, role);
       if (role === USER_ROLE.ADMIN) {
         menu = adminMenu;
-        console.log("12");
       }
       if (role === USER_ROLE.DOCTOR) {
         menu = doctorMenu;
@@ -37,11 +35,9 @@ class Header extends Component {
         menuApp: menu,
       });
     }
-    console.log(this.state.menuApp);
   }
 
   render() {
-    console.log(this.props.userInfo);
     let language = this.props.language;
     const { processLogout, userInfo } = this.props;
 

@@ -11,6 +11,26 @@ import {
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
+export const fetchAallScheduleTime = () => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getAllCodeApi("TIME");
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_SUCCESS,
+          dataTime: res.data.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAIL,
+        });
+      }
+    } catch (e) {
+      dispatch({ type: actionTypes.FETCH_ALLCODE_SCHEDULE_TIME_FAIL });
+    }
+  };
+};
+
 //Create doctor detail info
 export const fetchSaveDoctorInfo = (data) => {
   return async (dispatch, getState) => {

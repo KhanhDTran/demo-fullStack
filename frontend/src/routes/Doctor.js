@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { Redirect, Route, Switch } from "react-router-dom";
 import ManageSchedule from "../containers/System/Dcotor/ManageSchedule";
 import Header from "../containers/Header/Header";
+
+
 class Doctor extends Component {
   render() {
     const { isLoggedIn } = this.props;
