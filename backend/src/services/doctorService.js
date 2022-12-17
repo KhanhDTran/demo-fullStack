@@ -217,7 +217,7 @@ const getScheduleByDate = (doctorId, date) => {
           data: data,
         });
       }
-    } catch (e) { 
+    } catch (e) {
       reject(e);
     }
   });

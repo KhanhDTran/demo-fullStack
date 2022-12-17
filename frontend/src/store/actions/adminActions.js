@@ -11,6 +11,40 @@ import {
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
+export const fetchDoctorRequiredInfo = () => {
+  return async (dispatch, getState) => {
+    try {
+      let resPrice = await getAllCodeApi("PRICE");
+      let resPayment = await getAllCodeApi("PAYMENT");
+      let resProvince = await getAllCodeApi("PROVINCE");
+      if (
+        resPrice &&
+        resPrice.data.errCode === 0 &&
+        resPayment &&
+        resPayment.data.errCode === 0 &&
+        resProvince &&
+        resProvince.data.errCode === 0
+      ) {
+        let data = {
+          doctorPrice: resPrice.data.data,
+          doctorPayment: resPayment.data.data,
+          doctorProvince: resProvince.data.data,
+        };
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_REQUIRED_INFO_SUCCESS,
+          data: data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_REQUIRED_INFO_FAIL,
+        });
+      }
+    } catch (e) {
+      dispatch({ type: actionTypes.FETCH_DOCTOR_REQUIRED_INFO_FAIL });
+    }
+  };
+};
+
 export const fetchAallScheduleTime = () => {
   return async (dispatch, getState) => {
     try {

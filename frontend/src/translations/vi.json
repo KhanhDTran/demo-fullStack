@@ -75,5 +75,19 @@
       "schedule": "Lịch khám",
       "no-schedule": "Không có lịch hẹn vào thời gian này"
     }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Tạo thêm thông tin bác sĩ",
+      "select-doctor": "Chọn bác sĩ",
+      "intro": "Thông tin giới thiệu",
+      "save": "Lưu thông tin",
+      "price": "Chọn giá",
+      "pay-method": "Phương thức thanh toán",
+      "province": "Tỉnh thành",
+      "clinic-name": "Tên phòng khám",
+      "clinic-address": "Địa chỉ phòng khám",
+      "note": "note"
+    }
   }
 }

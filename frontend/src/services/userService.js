@@ -74,6 +74,7 @@ const getScheduleByDate = (doctorId, date) => {
     `/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`
   );
 };
+
 export {
   loginApi,
   getUsersApi,
@@ -87,4 +88,5 @@ export {
   getDoctorDetailInfo,
   saveScheduleDoctor,
   getScheduleByDate,
+ 
 };

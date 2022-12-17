@@ -75,5 +75,19 @@
       "schedule": "Schedule",
       "no-schedule": "No schedule available"
     }
+  },
+  "admin": {
+    "manage-doctor": {
+      "title": "Create doctor information",
+      "select-doctor": "Select doctor",
+      "intro": "Intro information",
+      "save": "Save information",
+      "price": "Price",
+      "pay-method": "Payment method",
+      "province": "Province",
+      "clinic-name": "Clinic name",
+      "clinic-address": "Clinic adress",
+      "note": "Note"
+    }
   }
 }
