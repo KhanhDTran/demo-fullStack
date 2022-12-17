@@ -207,6 +207,9 @@ const getScheduleByDate = (doctorId, date) => {
       } else {
         let data = await db.Schedule.findAll({
           where: { doctorId: doctorId, date: date },
+          include: [{ model: db.Allcode, as: "timeData" }],
+          raw: false,
+          nest: true,
         });
         if (!data) data = [];
         resolve({
@@ -214,7 +217,7 @@ const getScheduleByDate = (doctorId, date) => {
           data: data,
         });
       }
-    } catch (e) {
+    } catch (e) { 
       reject(e);
     }
   });

@@ -19,6 +19,10 @@ class DoctorSchedule extends Component {
     this.setArrDays(language);
   }
 
+  capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
   componentDidUpdate(prevProps, preState, snapshot) {
     if (this.props.language !== prevProps.language) {
       this.setArrDays(this.props.language);
@@ -37,6 +41,7 @@ class DoctorSchedule extends Component {
           .locale("en")
           .format("ddd -  MM/DD ");
       }
+      object.label = this.capitalizeFirstLetter(object.label);
       object.value = moment(new Date()).add(i, "days").startOf("day").valueOf();
       arrDate.push(object);
     }
@@ -61,6 +66,7 @@ class DoctorSchedule extends Component {
 
   render() {
     let { allDays, allAvailable } = this.state;
+    let { language } = this.props;
     console.log(allAvailable, " ------------");
     return (
       <div className="doctor-schedule-container">
@@ -79,17 +85,21 @@ class DoctorSchedule extends Component {
         </div>
         <div className="all-available">
           <div className="text-carlendar">
-            <i class="fa fa-calendar" aria-hidden="true">
-              {" "}
-            </i>
+            <i class="fa fa-calendar" aria-hidden="true"></i>
             <span>Lịch khám</span>
           </div>
           <div className="time-content">
-            {allAvailable &&
-              allAvailable.length > 0 &&
+            {allAvailable && allAvailable.length > 0 ? (
               allAvailable.map((item, index) => {
-                return <button key={index}>{item.timeType}</button>;
-              })}
+                let timeDisplay =
+                  language === LANGUAGES.VI
+                    ? item.timeData.valueVi
+                    : item.timeData.valueEn;
+                return <button key={index}>{timeDisplay}</button>;
+              })
+            ) : (
+              <span>Không có lịch hẹn trong thời gian này.</span>
+            )}
           </div>
         </div>
       </div>
