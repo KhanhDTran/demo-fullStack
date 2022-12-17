@@ -55,9 +55,22 @@ const getDoctorDetailById = async (req, res) => {
 };
 
 const createSchedule = async (req, res) => {
-  // console.log(req.body);
   try {
     let response = await docterService.createSchedule(req);
+    return res.status(200).json(response);
+  } catch (e) {
+    return res.status(200).json({
+      errCode: -1,
+      meessage: "Error from server",
+    });
+  }
+};
+const getScheduleByDate = async (req, res) => {
+  try {
+    let response = await docterService.getScheduleByDate(
+      req.query.doctorId,
+      req.query.date
+    );
     return res.status(200).json(response);
   } catch (e) {
     return res.status(200).json({
@@ -73,4 +86,5 @@ module.exports = {
   createDoctorInfo,
   getDoctorDetailById,
   createSchedule,
+  getScheduleByDate,
 };

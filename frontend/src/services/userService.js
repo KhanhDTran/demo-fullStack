@@ -69,6 +69,11 @@ const saveScheduleDoctor = (data) => {
   return instance.post("/api/create-schedule", data);
 };
 
+const getScheduleByDate = (doctorId, date) => {
+  return instance.get(
+    `/api/get-schedule-by-date?doctorId=${doctorId}&date=${date}`
+  );
+};
 export {
   loginApi,
   getUsersApi,
@@ -81,4 +86,5 @@ export {
   createDoctorInfo,
   getDoctorDetailInfo,
   saveScheduleDoctor,
+  getScheduleByDate,
 };

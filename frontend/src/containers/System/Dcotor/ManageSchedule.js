@@ -85,6 +85,9 @@ class ManageSchedule extends Component {
   handleSaveSchedule = async () => {
     let result = [];
     let { rangeTime, selectedDoctor, currentDate } = this.state;
+    if (!currentDate) {
+      toast.error("Invalid selected date");
+    }
     if (!selectedDoctor) {
       toast.error("Invalid selected doctor");
       return;

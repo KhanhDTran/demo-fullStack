@@ -173,13 +173,6 @@ const createSchedule = (req) => {
           attributes: ["timeType", "date", "doctorId", "maxNumber"],
           raw: true,
         });
-        // convert datatype date
-        if (exist && exist.length > 0) {
-          exist = exist.map((item) => {
-            item.date = new Date(item.date).getTime();
-            return item;
-          });
-        }
         //so sanh khac nhau
         let toCreate = _.differenceWith(schedule, exist, (a, b) => {
           return a.timeType === b.timeType && a.date === b.date;
@@ -198,10 +191,35 @@ const createSchedule = (req) => {
   });
 };
 
+const getScheduleByDate = (doctorId, date) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId || !date) {
+        resolve({
+          errCode: 1,
+          message: "Missing parameter",
+        });
+      } else {
+        let data = await db.Schedule.findAll({
+          where: { doctorId: doctorId, date: date },
+        });
+        if (!data) data = [];
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome,
   getAllDoctor,
   createDoctorInfo,
   getDoctorDetailById,
   createSchedule,
+  getScheduleByDate,
 };

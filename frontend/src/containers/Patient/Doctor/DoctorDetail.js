@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import HomeHeader from "../../HomePage/HomeHeader";
 import "./DoctorDetail.scss";
 import { getDoctorDetailInfo } from "../../../services/userService";
+import DoctorSchedule from "./DoctorSchedule";
 
 class DoctorDetail extends Component {
   constructor(props) {
@@ -33,6 +34,7 @@ class DoctorDetail extends Component {
   render() {
     let language = this.props.language;
     let doctor = this.state.doctorDetail;
+    let { doctorDetail } = this.state;
     let nameEn = "",
       nameVi = "";
     if (doctor && doctor.positionData) {
@@ -61,7 +63,12 @@ class DoctorDetail extends Component {
               </div>
             </div>
           </div>
-          <div className="schedule-doctor"></div>
+          <div className="schedule-doctor">
+            <div className="content-left">
+              <DoctorSchedule doctorId={doctorDetail ? doctorDetail.id : -1} />
+            </div>
+            <div className="content-right"></div>
+          </div>
           <div className="detail-info-doctor">
             {doctor && doctor.Markdown && doctor.Markdown.contentHTML && (
               <div
