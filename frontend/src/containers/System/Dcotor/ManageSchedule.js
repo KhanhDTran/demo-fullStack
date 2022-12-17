@@ -16,7 +16,7 @@ class ManageSchedule extends Component {
     this.state = {
       listDoctors: [],
       selectedDoctor: null,
-      currentDate: null,
+      currentDate: new Date().setHours(0, 0, 0, 0),
       rangeTime: [],
       selectedTime: false,
     };
@@ -151,7 +151,7 @@ class ManageSchedule extends Component {
                 onChange={this.handleOnchangeDatePicker}
                 className="form-control"
                 value={this.state.currentDate}
-                minDate={new Date()}
+                minDate={new Date().setHours(0, 0, 0, 0)}
               />
             </div>
             <div className="col-12 pick-hour-container">

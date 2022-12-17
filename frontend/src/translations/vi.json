@@ -69,5 +69,11 @@
     "select_doctor": "Chọn bác sĩ",
     "select-date": "Chọn ngày",
     "save": "Lưu"
+  },
+  "patient": {
+    "detail-doctor": {
+      "schedule": "Lịch khám",
+      "no-schedule": "Không có lịch hẹn vào thời gian này"
+    }
   }
 }
