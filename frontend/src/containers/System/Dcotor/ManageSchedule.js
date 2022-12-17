@@ -114,6 +114,9 @@ class ManageSchedule extends Component {
       date: formattedDate,
     };
     let res = await saveScheduleDoctor(data);
+    if (res.data.errCode === 0) {
+      toast.success("Save schedule success");
+    }
     console.log(res);
   };
   render() {

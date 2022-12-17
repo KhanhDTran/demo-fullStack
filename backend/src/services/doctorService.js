@@ -152,7 +152,12 @@ const createSchedule = (req) => {
   console.log(req.body);
   return new Promise(async (resolve, reject) => {
     try {
-      if (!req.body.arrSchedule || !req.body.doctorId || !req.body.date) {
+      if (
+        !req.body.arrSchedule ||
+        !req.body.doctorId ||
+        !req.body.date ||
+        req.body.date === 0
+      ) {
         resolve({
           errCode: "1",
           message: "Missing parameter",
@@ -175,7 +180,7 @@ const createSchedule = (req) => {
         });
         //so sanh khac nhau
         let toCreate = _.differenceWith(schedule, exist, (a, b) => {
-          return a.timeType === b.timeType && a.date === b.date;
+          return a.timeType === b.timeType && +a.date === +b.date;
         });
         if (toCreate && toCreate.length > 0) {
           await db.Schedule.bulkCreate(toCreate);

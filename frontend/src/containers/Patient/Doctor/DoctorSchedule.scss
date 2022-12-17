@@ -1,0 +1,35 @@
+.doctor-schedule-container {
+  border: 1px solid red;
+  .all-schedule {
+  }
+
+  .all-available {
+    color: #333;
+
+    .text-carlendar {
+      margin-top: 10px;
+      margin-bottom: 15px;
+      i {
+        font-size: 15px;
+      }
+      span {
+        margin-left: 5px;
+        text-transform: uppercase;
+        font-weight: 500;
+      }
+    }
+
+    .time-content {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+
+      button {
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+        background: #eee;
+      }
+    }
+  }
+}

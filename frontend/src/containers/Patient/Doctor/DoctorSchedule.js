@@ -10,6 +10,7 @@ class DoctorSchedule extends Component {
     super(props);
     this.state = {
       allDays: [],
+      allAvailable: [],
     };
   }
 
@@ -47,15 +48,20 @@ class DoctorSchedule extends Component {
 
   handleOnchangeSelect = async (e) => {
     let date = e.target.value;
-    console.log(this.props.doctorId);
     if (this.props.doctorId && this.props.doctorId !== -1) {
       let res = await getScheduleByDate(this.props.doctorId, date);
+      if (res && res.data.errCode === 0) {
+        this.setState({
+          allAvailable: res.data ? res.data.data : [],
+        });
+      }
       console.log(res);
     }
   };
 
   render() {
-    let { allDays } = this.state;
+    let { allDays, allAvailable } = this.state;
+    console.log(allAvailable, " ------------");
     return (
       <div className="doctor-schedule-container">
         <div className="all-schedule">
@@ -71,7 +77,21 @@ class DoctorSchedule extends Component {
               })}
           </select>
         </div>
-        <div className="all-available"></div>
+        <div className="all-available">
+          <div className="text-carlendar">
+            <i class="fa fa-calendar" aria-hidden="true">
+              {" "}
+            </i>
+            <span>Lịch khám</span>
+          </div>
+          <div className="time-content">
+            {allAvailable &&
+              allAvailable.length > 0 &&
+              allAvailable.map((item, index) => {
+                return <button key={index}>{item.timeType}</button>;
+              })}
+          </div>
+        </div>
       </div>
     );
   }
