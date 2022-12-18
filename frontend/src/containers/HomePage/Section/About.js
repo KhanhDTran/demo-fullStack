@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import Slider from "react-slick";
-
 class About extends Component {
   render() {
     return (
@@ -19,7 +17,6 @@ class About extends Component {
                 src="https://www.youtube.com/embed/FAY1K2aUg5g"
                 title="How to get embed code 
                         from youtube"
-                frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; 
                         encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen

@@ -2,8 +2,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import React, { Component } from "react";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { connect } from "react-redux";
-import { getTextOfJSDocComment } from "typescript";
-
 class UpdateUserModal extends Component {
   constructor(props) {
     super(props);

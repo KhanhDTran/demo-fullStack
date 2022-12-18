@@ -8,7 +8,6 @@ import { adminMenu, doctorMenu } from "./menuApp";
 import "./Header.scss";
 import { LANGUAGES, USER_ROLE } from "../../utils";
 import _ from "lodash";
-import constant from "../../utils/constant";
 class Header extends Component {
   constructor(props) {
     super(props);

@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import Slider from "react-slick";
-
 class HomeFooter extends Component {
   render() {
     return (

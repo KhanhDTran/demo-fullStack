@@ -121,60 +121,53 @@ export const createNewUser = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createUserApi(data);
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
+        toast.success("Create user success");
         dispatch(saveUserSuccess());
-
         dispatch(fetchAllUser());
       } else {
+        toast.error("Create user fail");
         dispatch(saveUserFail());
       }
     } catch (e) {
       console.log(e);
+      toast.error("Create user fail");
       dispatch(saveUserFail());
     }
   };
 };
-export const saveUserSuccess = () => (
-  toast.success("Create user success"),
-  {
-    type: actionTypes.SAVE_USER_SUCCESS,
-  }
-);
-export const saveUserFail = () => (
-  toast.error("Create user fail"),
-  {
-    type: actionTypes.SAVE_USER_FAIL,
-  }
-);
+export const saveUserSuccess = () => ({
+  type: actionTypes.SAVE_USER_SUCCESS,
+});
+export const saveUserFail = () => ({
+  type: actionTypes.SAVE_USER_FAIL,
+});
 
 //Delete user
 export const deleteUser = (id) => {
   return async (dispatch, getState) => {
     try {
       let res = await deleteUserApi(id);
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
+        toast.success("Delete user success");
         dispatch(deleteUserSuccess());
         dispatch(fetchAllUser());
       } else {
         dispatch(deleteUserFail());
+        toast.error("Delete user fail");
       }
     } catch (e) {
       dispatch(deleteUserFail());
+      toast.error("Delete user fail");
     }
   };
 };
-export const deleteUserSuccess = () => (
-  toast.success("Delete user success"),
-  {
-    type: actionTypes.DELETE_USER_SUCCESS,
-  }
-);
-export const deleteUserFail = () => (
-  toast.error("Delete user fail"),
-  {
-    type: actionTypes.DELETE_USER_FAIL,
-  }
-);
+export const deleteUserSuccess = () => ({
+  type: actionTypes.DELETE_USER_SUCCESS,
+});
+export const deleteUserFail = () => ({
+  type: actionTypes.DELETE_USER_FAIL,
+});
 
 //Edit User
 export const editUser = (data) => {
@@ -183,37 +176,34 @@ export const editUser = (data) => {
     try {
       let res = await updateUserApi(data);
       console.log("res: ", res);
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
+        toast.success("Edit user success");
         dispatch(editUserSuccess());
         dispatch(fetchAllUser());
       } else {
         dispatch(editUserFail());
+        toast.error("Edit user fail");
       }
     } catch (e) {
       console.log("e", e);
       dispatch(deleteUserFail());
+      toast.error("Edit user fail");
     }
   };
 };
-export const editUserSuccess = () => (
-  toast.success("Edit user success"),
-  {
-    type: actionTypes.EDIT_USER_SUCCESS,
-  }
-);
-export const editUserFail = () => (
-  toast.error("Edit user fail"),
-  {
-    type: actionTypes.EDIT_USER_FAIL,
-  }
-);
+export const editUserSuccess = () => ({
+  type: actionTypes.EDIT_USER_SUCCESS,
+});
+export const editUserFail = () => ({
+  type: actionTypes.EDIT_USER_FAIL,
+});
 
 //Gender
 export const fetchGenderStart = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllCodeApi("gender");
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
         dispatch(fetchGenderSuccess(res.data.data));
       } else {
         dispatch(fetchGenderFail());
@@ -237,7 +227,7 @@ export const fetchPositionStart = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllCodeApi("position");
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
         dispatch(fetchPositionSuccess(res.data.data));
       } else {
         dispatch(fetchPositionFail());
@@ -261,7 +251,7 @@ export const fetchRoleStart = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getAllCodeApi("role");
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
         dispatch(fetchRoleSuccess(res.data.data));
       } else {
         dispatch(fetchRoleFail());
@@ -285,7 +275,7 @@ export const fetchAllUser = () => {
   return async (dispatch, getState) => {
     try {
       let res = await getUsersApi();
-      if (res && res.data.errCode == 0) {
+      if (res && res.data.errCode === 0) {
         dispatch(fetchAllUserSuccess(res.data.users.reverse()));
       } else {
         dispatch(fetchAllUserFail());

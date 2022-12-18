@@ -6,13 +6,6 @@ import Slider from "react-slick";
 
 class Specialty extends Component {
   render() {
-    const settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 4,
-      slidesToScroll: 4,
-    };
     return (
       <div className="section-share section-specialty">
         <div className="section-container">

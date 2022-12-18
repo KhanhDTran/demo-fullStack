@@ -72,7 +72,7 @@ class DoctorManage extends Component {
     let result = [];
     let language = this.props.language;
     if (input && input.length > 0) {
-      input.map((item, index) => {
+      input.forEach((item) => {
         let object = {};
         let labelVi =
           type === "users"
@@ -158,15 +158,15 @@ class DoctorManage extends Component {
     ) {
       let markdown = res.data.data.Markdown;
       let doctor_info = res.data.data.Doctor_info;
-      let paymentId = listPayment.find((item) => {
-        if (item.value === doctor_info.paymentId) return item;
-      });
-      let priceId = listPrice.find((item) => {
-        if (item.value === doctor_info.priceId) return item;
-      });
-      let provinceId = listProvince.find((item) => {
-        if (item.value === doctor_info.provinceId) return item;
-      });
+      let paymentId = listPayment.find(
+        (item) => item.value === doctor_info.paymentId
+      );
+      let priceId = listPrice.find(
+        (item) => item.value === doctor_info.priceId
+      );
+      let provinceId = listProvince.find(
+        (item) => item.value === doctor_info.provinceId
+      );
       this.setState({
         contentHTML: markdown.contentHTML,
         contentMarkdown: markdown.contentMarkdown,
@@ -204,7 +204,6 @@ class DoctorManage extends Component {
       clinicAddress,
       note,
       contentMarkdown,
-      contentHTML,
       description,
       selectedPrice,
       selectedPayment,

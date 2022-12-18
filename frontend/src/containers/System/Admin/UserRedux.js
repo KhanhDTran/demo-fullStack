@@ -79,7 +79,7 @@ class UserRedux extends Component {
       role: "",
       position: "",
       image: "",
-      action: "",
+
       previewImgUrl: "",
     });
   };

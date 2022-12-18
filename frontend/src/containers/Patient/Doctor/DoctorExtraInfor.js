@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DoctorExtraInfor.scss";
 import * as actions from "../../../store/actions";
@@ -37,7 +37,12 @@ class DoctorExtraInfor extends Component {
   }
 
   changeStateWhenChangeLanguage = (extraInfo, language) => {
-    if (extraInfo) {
+    if (
+      extraInfo &&
+      extraInfo.priceData &&
+      extraInfo.provinceData &&
+      extraInfo.paymentData
+    ) {
       if (language === LANGUAGES.VI) {
         this.setState({
           priceValue: extraInfo.priceData.valueVi,
@@ -56,7 +61,7 @@ class DoctorExtraInfor extends Component {
 
   render() {
     let { language } = this.props;
-    let { extraInfo, priceValue, province, payment } = this.state;
+    let { extraInfo, priceValue, payment } = this.state;
     return (
       <div className="doctor-extra-info-container">
         <div className="content-up">

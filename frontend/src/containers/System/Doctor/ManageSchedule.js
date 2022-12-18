@@ -4,7 +4,7 @@ import "./ManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
-import { LANGUAGES, DATE_FORMAT } from "../../../utils";
+import { LANGUAGES } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
 import moment from "moment";
@@ -55,7 +55,7 @@ class ManageSchedule extends Component {
     let result = [];
     let language = this.props.language;
     if (input && input.length > 0) {
-      input.map((item, index) => {
+      input.forEach((item, index) => {
         let object = {};
         let labelVi = `${item.firstName} ${item.lastName}`;
         let labelEn = `${item.lastName} ${item.firstName}`;
@@ -96,7 +96,7 @@ class ManageSchedule extends Component {
     if (rangeTime && rangeTime.length > 0) {
       let selectedTime = rangeTime.filter((item) => item.isSelected === true);
       if (selectedTime && selectedTime.length > 0) {
-        selectedTime.map((schedule) => {
+        selectedTime.forEach((schedule) => {
           let object = {};
           object.doctorId = selectedDoctor.value;
           object.date = formattedDate;

@@ -24,8 +24,9 @@ class HomeHeader extends Component {
       <React.Fragment>
         <div className="home-header-container">
           <div className="header-left-content">
-            <i class="fa fa-bars" aria-hidden="true"></i>
+            <i className="fa fa-bars" aria-hidden="true"></i>
             <img
+              alt=""
               src={logoImg}
               onClick={() => {
                 this.returnHome();
@@ -67,7 +68,7 @@ class HomeHeader extends Component {
             </div>
           </div>
           <div className="header-right-content">
-            <i class="fa fa-question-circle" aria-hidden="true">
+            <i className="fa fa-question-circle" aria-hidden="true">
               Hỗ Trợ
             </i>
             <span
@@ -99,38 +100,38 @@ class HomeHeader extends Component {
                 <FormattedMessage id="banner.title2" />
               </div>
               <div className="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
+                <i className="fa fa-search" aria-hidden="true"></i>
                 <input type="text" placeholder="Tìm bác sĩ...." />
               </div>
             </div>
             <div className="content-down">
               <ul>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Khám Chuyên Khoa</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Khám Từ xa</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Khám Tổng Quát</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Xét nghiệm y học</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Sức khỏe tinh thần</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Khám Nha Khoa</span>
                 </li>
                 <li>
-                  <i class="fa fa-medkit"></i>
+                  <i className="fa fa-medkit"></i>
                   <span className="title-options">Gói phẫu thuật</span>
                 </li>
               </ul>
