@@ -4,7 +4,7 @@ import HomeHeader from "../../HomePage/HomeHeader";
 import "./DoctorDetail.scss";
 import { getDoctorDetailInfo } from "../../../services/userService";
 import DoctorSchedule from "./DoctorSchedule";
-
+import DoctorExtraInfor from "./DoctorExtraInfor";
 class DoctorDetail extends Component {
   constructor(props) {
     super(props);
@@ -67,7 +67,11 @@ class DoctorDetail extends Component {
             <div className="content-left">
               <DoctorSchedule doctorId={doctorDetail ? doctorDetail.id : -1} />
             </div>
-            <div className="content-right"></div>
+            <div className="content-right">
+              <DoctorExtraInfor
+                doctorId={doctorDetail ? doctorDetail.id : -1}
+              />
+            </div>
           </div>
           <div className="detail-info-doctor">
             {doctor && doctor.Markdown && doctor.Markdown.contentHTML && (

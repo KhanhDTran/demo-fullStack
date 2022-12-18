@@ -17,12 +17,12 @@ class DoctorManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //model markdown
       contentMarkdown: "",
       contentHTML: "",
       description: "",
       selectedDoctor: null,
       listDoctors: [],
-      hasOldData: false,
       //save to doctor_infor table
       listPrice: [],
       listPayment: [],
@@ -51,7 +51,7 @@ class DoctorManage extends Component {
       });
     }
     if (prevProps.language !== this.props.language) {
-      let dataSelect = this.buildDataInputSelect(this.props.doctors);
+      let dataSelect = this.buildDataInputSelect(this.props.doctors, "users");
       this.setState({
         listDoctors: dataSelect,
         listPayment: this.buildDataInputSelect(doctorPayment),
@@ -148,22 +148,35 @@ class DoctorManage extends Component {
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedDoctor: selectedOption }, () => {});
     let res = await getDoctorDetailInfo(selectedOption.value);
-
-    if (res && res.data && res.data.errCode === 0 && res.data.data.Markdown) {
+    let { listPayment, listPrice, listProvince } = this.state;
+    if (
+      res &&
+      res.data &&
+      res.data.errCode === 0 &&
+      res.data.data.Markdown &&
+      res.data.data.Doctor_info
+    ) {
       let markdown = res.data.data.Markdown;
+      let doctor_info = res.data.data.Doctor_info;
+      let paymentId = listPayment.find((item) => {
+        if (item.value === doctor_info.paymentId) return item;
+      });
+      let priceId = listPrice.find((item) => {
+        if (item.value === doctor_info.priceId) return item;
+      });
+      let provinceId = listProvince.find((item) => {
+        if (item.value === doctor_info.provinceId) return item;
+      });
       this.setState({
         contentHTML: markdown.contentHTML,
         contentMarkdown: markdown.contentMarkdown,
         description: markdown.description,
-        hasOldData: true,
-      });
-    }
-    if (!res.data.data.Markdown.description) {
-      this.setState({
-        contentMarkdown: "",
-        contentHTML: "",
-        description: "",
-        hasOldData: false,
+        selectedPrice: priceId,
+        selectedPayment: paymentId,
+        selectedProvince: provinceId,
+        clinicName: doctor_info.nameClinic,
+        clinicAddress: doctor_info.addressClinic,
+        note: doctor_info.note,
       });
     }
   };
@@ -186,6 +199,17 @@ class DoctorManage extends Component {
   };
 
   render() {
+    let {
+      clinicName,
+      clinicAddress,
+      note,
+      contentMarkdown,
+      contentHTML,
+      description,
+      selectedPrice,
+      selectedPayment,
+      selectedProvince,
+    } = this.state;
     return (
       <div className="doctor-manage-container">
         <div className="doctor-manage-title">
@@ -213,7 +237,7 @@ class DoctorManage extends Component {
             </label>
             <textarea
               id="description"
-              value={this.state.description}
+              value={description ? description : ""}
               onChange={(e) => {
                 this.handleOnChangeDescription(e);
               }}
@@ -233,7 +257,7 @@ class DoctorManage extends Component {
             <Select
               name="selectedPrice"
               placeholder="Select price..."
-              value={this.state.selectedPrice}
+              value={selectedPrice ? selectedPrice : {}}
               onChange={this.handleOnChangeSelectedDoctorInfo}
               options={this.state.listPrice}
             />
@@ -248,7 +272,7 @@ class DoctorManage extends Component {
             <Select
               name="selectedPayment"
               placeholder="Select pay method..."
-              value={this.state.selectedPayment}
+              value={selectedPayment ? selectedPayment : {}}
               onChange={this.handleOnChangeSelectedDoctorInfo}
               options={this.state.listPayment}
             />
@@ -263,7 +287,7 @@ class DoctorManage extends Component {
             <Select
               name="selectedProvince"
               placeholder="Select province..."
-              value={this.state.selectedProvince}
+              value={selectedProvince ? selectedProvince : {}}
               onChange={this.handleOnChangeSelectedDoctorInfo}
               options={this.state.listProvince}
             />
@@ -278,25 +302,27 @@ class DoctorManage extends Component {
             <input
               id="clinicName"
               type="text"
+              value={clinicName ? clinicName : ""}
               className="form-control"
               onChange={(e) => this.handleOnChangeInput(e)}
             />
           </div>
           {/* clinic name */}
 
-          {/* address */}
+          {/*clinic  address */}
           <div className="col-4 form-group">
-            <label htmlFor="address">
+            <label htmlFor="clinicAddress">
               {" "}
               <FormattedMessage id="admin.manage-doctor.clinic-address" />
             </label>
             <input
+              value={clinicAddress ? clinicAddress : ""}
               id="clinicAddress"
               type="text"
               className="form-control"
               onChange={(e) => this.handleOnChangeInput(e)}
             />
-            {/* address */}
+            {/*clinic  address */}
           </div>
 
           {/* note */}
@@ -308,6 +334,7 @@ class DoctorManage extends Component {
             <input
               id="note"
               type="text"
+              value={note ? note : ""}
               className="form-control"
               onChange={(e) => this.handleOnChangeInput(e)}
             />
@@ -318,7 +345,7 @@ class DoctorManage extends Component {
         {/* mark down */}
         <div className="manage-doctor-editor">
           <MdEditor
-            value={this.state.contentMarkdown}
+            value={contentMarkdown ? contentMarkdown : ""}
             style={{ height: "500px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}

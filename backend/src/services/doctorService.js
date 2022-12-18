@@ -155,6 +155,17 @@ const getDoctorDetailById = (id) => {
               attributes: ["contentHTML", "contentMarkdown", "description"],
             },
             {
+              model: db.Doctor_info,
+              attributes: [
+                "priceId",
+                "provinceId",
+                "paymentId",
+                "addressClinic",
+                "nameClinic",
+                "note",
+              ],
+            },
+            {
               model: db.Allcode,
               as: "positionData",
               attributes: ["valueVi", "valueEn"],

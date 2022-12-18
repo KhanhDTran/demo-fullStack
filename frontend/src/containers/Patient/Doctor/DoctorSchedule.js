@@ -17,7 +17,6 @@ class DoctorSchedule extends Component {
 
   async componentDidMount() {
     let { language } = this.props;
-
     this.setState({
       allDays: this.getArrDays(language),
     });
