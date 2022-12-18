@@ -20,4 +20,4 @@ tao model:
 	npx sequelize-cli model:generate --name Allcode --attributes  keyMap:string,type:string,valueEn:string,valueVi:string
 	npx sequelize-cli model:generate --name Doctor_clinic_specialty --attributes doctorId:integer,clinicId:integer,specialtyId:integer  
     npx sequelize-cli model:generate --name Markdown --attributes contentHTML:text,contentMarkdown:text,description:text,doctorId:integer,specialtyId:integer,clinicId:integer
-	npx sequelize-cli model:generate --name doctor_info --attributes doctorId:integer,priceId:string,provinceId:string,paymentId:string,addressClinic:string,nameClinic:string,note:string,count:integer
+	npx sequelize-cli model:generate --name Doctor_info --attributes doctorId:integer,priceId:string,provinceId:string,paymentId:string,addressClinic:string,nameClinic:string,note:string,count:integer

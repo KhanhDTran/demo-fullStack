@@ -66,7 +66,12 @@ const createDoctorInfo = (data) => {
         !data.doctorId ||
         !data.contentHTML ||
         !data.contentMarkdown ||
-        !data.action
+        !data.action ||
+        !data.selectedPrice ||
+        !data.selectedProvince ||
+        !data.selectedPayment ||
+        !data.clinicName ||
+        !data.clinicAddress
       ) {
         resolve({
           errCode: 1,
@@ -74,6 +79,7 @@ const createDoctorInfo = (data) => {
         });
       } else {
         if (data.action === "CREATE") {
+          // upsert markdown
           await db.Markdown.create({
             contentHTML: data.contentHTML,
             contentMarkdown: data.contentMarkdown,
@@ -91,6 +97,32 @@ const createDoctorInfo = (data) => {
               (doctorMarkdown.description = data.description),
               await doctorMarkdown.save();
           }
+        }
+        // model doctor-info
+        let doctorInfo = await db.Doctor_info.findOne({
+          where: { doctorId: data.doctorId },
+          raw: false,
+        });
+        if (doctorInfo) {
+          //update
+          doctorInfo.priceId = data.selectedPrice;
+          doctorInfo.provinceId = data.selectedProvince;
+          doctorInfo.paymentId = data.selectedPayment;
+          doctorInfo.addressClinic = data.clinicAddress;
+          doctorInfo.nameClinic = data.clinicName;
+          doctorInfo.note = data.note;
+          await doctorInfo.save();
+        } else {
+          // create
+          await db.Doctor_info.create({
+            doctorId: data.doctorId,
+            priceId: data.selectedPrice,
+            provinceId: data.selectedProvince,
+            paymentId: data.selectedPayment,
+            addressClinic: data.clinicAddress,
+            nameClinic: data.clinicName,
+            note: data.note,
+          });
         }
       }
       resolve({

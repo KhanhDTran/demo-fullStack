@@ -11,6 +11,7 @@ import {
 } from "../../services/userService";
 import { toast } from "react-toastify";
 
+//get doctor infor input
 export const fetchDoctorRequiredInfo = () => {
   return async (dispatch, getState) => {
     try {
@@ -45,6 +46,7 @@ export const fetchDoctorRequiredInfo = () => {
   };
 };
 
+// get schedule time
 export const fetchAallScheduleTime = () => {
   return async (dispatch, getState) => {
     try {
@@ -70,12 +72,13 @@ export const fetchSaveDoctorInfo = (data) => {
   return async (dispatch, getState) => {
     try {
       let res = await createDoctorInfo(data);
+      console.log(res.data);
       if (res && res.data.errCode === 0) {
-        dispatch(fetchSaveDoctorSuccess(res.data.data));
         toast.success("Create doctor infor success");
+        dispatch(fetchSaveDoctorSuccess(res.data.data));
       } else {
         dispatch(fetchSaveDoctorFail());
-        toast.error("Create doctor infor fail");
+        toast.error("Create doctor infor fail:");
       }
     } catch (e) {
       dispatch(fetchSaveDoctorFail());
