@@ -1,67 +1,113 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DoctorExtraInfor.scss";
-
+import * as actions from "../../../store/actions";
+import { NumericFormat } from "react-number-format";
+import { LANGUAGES } from "../../../utils";
+import { FormattedMessage } from "react-intl";
 class DoctorExtraInfor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      showPriceTable: true,
+      extraInfo: null,
+      priceValue: "",
+      province: "",
+      payment: "",
     };
   }
 
   async componentDidMount() {}
 
-  componentDidUpdate(prevProps, preState, snapshot) {}
+  componentDidUpdate(prevProps, preState, snapshot) {
+    let { language } = this.props;
+    if (language !== prevProps.language) {
+      this.changeStateWhenChangeLanguage(this.state.extraInfo, language);
+    }
+    if (this.props.doctorId !== prevProps.doctorId) {
+      this.props.fetchExtraInfoById(this.props.doctorId);
+    }
+    if (this.props.doctorExtraInfo !== prevProps.doctorExtraInfo) {
+      this.setState({
+        extraInfo: this.props.doctorExtraInfo,
+      });
+    }
+    if (this.state.extraInfo !== preState.extraInfo) {
+      this.changeStateWhenChangeLanguage(this.state.extraInfo, language);
+    }
+  }
 
-  handleShowAndHide = () => {
-    this.setState({ showPriceTable: !this.state.showPriceTable });
+  changeStateWhenChangeLanguage = (extraInfo, language) => {
+    if (extraInfo) {
+      console.log(extraInfo);
+      if (language === LANGUAGES.VI) {
+        this.setState({
+          priceValue: extraInfo.priceData.valueVi,
+          province: extraInfo.provinceData.valueVi,
+          payment: extraInfo.paymentData.valueVi,
+        });
+      } else {
+        this.setState({
+          priceValue: extraInfo.priceData.valueEn,
+          province: extraInfo.provinceData.valueEn,
+          payment: extraInfo.paymentData.valueEn,
+        });
+      }
+    }
   };
 
   render() {
-    let { showPriceTable } = this.state;
+    let { language } = this.props;
+    let { extraInfo, priceValue, province, payment } = this.state;
+    console.log(this.state);
     return (
       <div className="doctor-extra-info-container">
         <div className="content-up">
-          <div className="text-address">Địa chỉ khám</div>
+          <div className="text-address">
+            {" "}
+            <FormattedMessage id={"patient.extra-infor-doctor.address"} />
+          </div>
           <div className="name-clinic">
-            Phòng khám Bệnh viện Đại học Y Dược 1
+            {extraInfo && extraInfo.nameClinic ? extraInfo.nameClinic : ""}
           </div>
           <div className="detail-address">
-            20-22 Dương Quang Trung, Phường 12, Quận 10, Tp. HCM
+            {extraInfo && extraInfo.addressClinic
+              ? extraInfo.addressClinic
+              : ""}
           </div>
         </div>
         <div className="content-down">
           <div className="price">
-            GIÁ KHÁM: {!showPriceTable ? "50000" : ""}
+            <FormattedMessage id={"patient.extra-infor-doctor.price"} />
+            <span className="price-value">
+              {" "}
+              {language === LANGUAGES.EN && priceValue && (
+                <NumericFormat
+                  value={priceValue}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  prefix={"$"}
+                />
+              )}
+              {language === LANGUAGES.VI && priceValue && (
+                <NumericFormat
+                  value={priceValue}
+                  displayType={"text"}
+                  thousandSeparator={true}
+                  suffix={"VNĐ"}
+                />
+              )}
+            </span>
           </div>
           <div className="price-table">
-            {showPriceTable && (
-              <>
-                <div className="price-detail">
-                  <div className="price-detail-left">Giá tư vấn 15p</div>
-                  <div className="price-detail-right">250.000d</div>
-                </div>
-                <div className="price-detail">
-                  <div className="price-detail-left">Giá tư vấn 30p</div>
-                  <div className="price-detail-right">500.000d</div>
-                </div>
-                <div className="pay-method">
-                  Phòng khám có thanh toán bằng hình thức tiền mặt và quẹt thẻ
-                </div>
-              </>
-            )}
-          </div>
-          <div>
-            <span
-              className="show-hide-price-table"
-              onClick={() => {
-                this.handleShowAndHide();
-              }}
-            >
+            <div className="pay-method">
               {" "}
-              {showPriceTable ? " Ẩn bảng giá" : "Xem chi tiết"}
-            </span>
+              <FormattedMessage
+                id={"patient.extra-infor-doctor.payment-method"}
+              />
+              {extraInfo && extraInfo.paymentData && (
+                <span className="payment-method">{payment}</span>
+              )}
+            </div>
           </div>
         </div>
       </div>
@@ -72,11 +118,15 @@ class DoctorExtraInfor extends Component {
 const mapStateToProps = (state) => {
   return {
     language: state.app.language,
+    doctorExtraInfo: state.admin.doctorExtraInfo,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {};
+  return {
+    fetchExtraInfoById: (doctorId) =>
+      dispatch(actions.fetchExtraInfoById(doctorId)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DoctorExtraInfor);

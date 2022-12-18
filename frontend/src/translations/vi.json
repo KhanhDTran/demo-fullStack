@@ -74,6 +74,11 @@
     "detail-doctor": {
       "schedule": "Lịch khám",
       "no-schedule": "Không có lịch hẹn vào thời gian này"
+    },
+    "extra-infor-doctor": {
+      "address": "Địa chỉ phòng khám",
+      "payment-method": "Phương thức thanh toán ",
+      "price": "Giá khám"
     }
   },
   "admin": {

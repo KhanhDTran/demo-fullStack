@@ -266,6 +266,52 @@ const getScheduleByDate = (doctorId, date) => {
   });
 };
 
+const getExtraInfoById = (doctorId) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!doctorId) {
+        resolve({
+          errCode: 1,
+          message: "Missing parameter",
+        });
+      } else {
+        let info = await db.Doctor_info.findOne({
+          where: { doctorId: doctorId },
+          attributes: {
+            exclude: ["id", "doctorId"],
+          },
+          include: [
+            {
+              model: db.Allcode,
+              as: "priceData",
+              attributes: ["valueVi", "valueEn"],
+            },
+            {
+              model: db.Allcode,
+              as: "paymentData",
+              attributes: ["valueVi", "valueEn"],
+            },
+            {
+              model: db.Allcode,
+              as: "provinceData",
+              attributes: ["valueVi", "valueEn"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (!info) info = {};
+        resolve({
+          errCode: 0,
+          data: info,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
+
 module.exports = {
   getTopDoctorHome,
   getAllDoctor,
@@ -273,4 +319,5 @@ module.exports = {
   getDoctorDetailById,
   createSchedule,
   getScheduleByDate,
+  getExtraInfoById,
 };

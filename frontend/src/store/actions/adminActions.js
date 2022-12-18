@@ -8,8 +8,30 @@ import {
   getTopDoctorHome,
   getAllDoctorApi,
   createDoctorInfo,
+  getExtraInfoById,
 } from "../../services/userService";
 import { toast } from "react-toastify";
+
+//get extra info by id
+export const fetchExtraInfoById = (doctorId) => {
+  return async (dispatch, getState) => {
+    try {
+      let res = await getExtraInfoById(doctorId);
+      if (res && res.data.errCode === 0) {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_EXTRA_INFO_SUCCESS,
+          data: res.data.data,
+        });
+      } else {
+        dispatch({
+          type: actionTypes.FETCH_DOCTOR_EXTRA_INFO_FAIL,
+        });
+      }
+    } catch (e) {
+      dispatch({ type: actionTypes.FETCH_DOCTOR_EXTRA_INFO_FAIL });
+    }
+  };
+};
 
 //get doctor infor input
 export const fetchDoctorRequiredInfo = () => {

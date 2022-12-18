@@ -74,6 +74,11 @@
     "detail-doctor": {
       "schedule": "Schedule",
       "no-schedule": "No schedule available"
+    },
+    "extra-infor-doctor": {
+      "address": "Address",
+      "payment-method": "Payment method",
+      "price" : "Price"
     }
   },
   "admin": {
