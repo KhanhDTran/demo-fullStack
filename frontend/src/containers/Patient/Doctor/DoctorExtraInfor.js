@@ -38,7 +38,6 @@ class DoctorExtraInfor extends Component {
 
   changeStateWhenChangeLanguage = (extraInfo, language) => {
     if (extraInfo) {
-      console.log(extraInfo);
       if (language === LANGUAGES.VI) {
         this.setState({
           priceValue: extraInfo.priceData.valueVi,
@@ -58,7 +57,6 @@ class DoctorExtraInfor extends Component {
   render() {
     let { language } = this.props;
     let { extraInfo, priceValue, province, payment } = this.state;
-    console.log(this.state);
     return (
       <div className="doctor-extra-info-container">
         <div className="content-up">
