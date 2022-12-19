@@ -24,17 +24,19 @@ class ModalBooking extends Component {
   };
 
   render() {
-    // console.log("--------", this.props);
-    let { bookingData } = this.props;
-    let doctorId =
-      bookingData && !_.isEmpty(bookingData) ? bookingData.doctorId : "";
+    let { timeData } = this.props;
+    let doctorId = timeData && !_.isEmpty(timeData) ? timeData.doctorId : "";
     return (
       <>
         <ModalBody>
           <div className="modal-booking-container">
-            {/* {JSON.stringify(this.props.bookingData)} */}
+            {/* {JSON.stringify(this.props.timeData)} */}
             <div className="doctor-info">
-              <ProfileDoctor doctorId={doctorId} />
+              <ProfileDoctor
+                doctorId={doctorId}
+                isShowDescription={false}
+                timeData={timeData}
+              />
             </div>
 
             <div className="row">

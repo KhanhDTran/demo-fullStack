@@ -2,6 +2,7 @@ import express from "express";
 import userApi from "../api/userApi";
 import loginApi from "../api/loginApi";
 import doctorApi from "../api/doctorApi";
+import patientApi from "../api/patientApi";
 
 require("dotenv").config();
 
@@ -29,7 +30,9 @@ let initWebRoute = (app) => {
   router.post("/api/create-schedule", doctorApi.createSchedule);
   router.get("/api/get-schedule-by-date", doctorApi.getScheduleByDate);
   router.get("/api/get-extra-info-by-id", doctorApi.getExtraInfoById);
-  router.get("/api/get-profile-doctor", doctorApi.getProfileDoctor)
+  router.get("/api/get-profile-doctor", doctorApi.getProfileDoctor);
+
+  router.post("/api/patient-book-appointment", patientApi.postBookAppointment);
 
   return app.use("/", router);
 };

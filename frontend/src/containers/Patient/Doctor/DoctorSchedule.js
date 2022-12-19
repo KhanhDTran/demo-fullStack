@@ -2,6 +2,7 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DoctorSchedule.scss";
 import moment from "moment";
+import localization from "moment/locale/vi";
 import { LANGUAGES } from "../../../utils";
 import { getScheduleByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
@@ -167,7 +168,7 @@ class DoctorSchedule extends Component {
           >
             <ModalHeader toggle={this.toggle}>Booking Heath Care</ModalHeader>
             <ModalBooking
-              bookingData={this.state.modalScheduleTimeData}
+              timeData={this.state.modalScheduleTimeData}
               toggle={this.toggle}
             />
           </Modal>
