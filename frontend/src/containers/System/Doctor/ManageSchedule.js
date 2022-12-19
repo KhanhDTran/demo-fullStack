@@ -7,7 +7,6 @@ import * as actions from "../../../store/actions";
 import { LANGUAGES } from "../../../utils";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
-import moment from "moment";
 import { saveScheduleDoctor } from "../../../services/userService";
 
 class ManageSchedule extends Component {

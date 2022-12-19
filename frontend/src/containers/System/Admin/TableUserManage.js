@@ -35,7 +35,7 @@ class TableUserManage extends Component {
     return (
       <React.Fragment>
         <div className="container mb-5">
-          <table class="table table-striped">
+          <table className="table table-striped">
             <thead>
               <tr>
                 <th>Email</th>

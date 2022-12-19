@@ -2,12 +2,11 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import "./DoctorSchedule.scss";
 import moment from "moment";
-import localization from "moment/locale/vi";
 import { LANGUAGES } from "../../../utils";
 import { getScheduleByDate } from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import ModalBooking from "./Modal/ModalBooking";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { Modal, ModalHeader } from "reactstrap";
 
 class DoctorSchedule extends Component {
   constructor(props) {
@@ -16,6 +15,7 @@ class DoctorSchedule extends Component {
       allDays: [],
       allAvailable: [],
       modal: false,
+      modalScheduleTimeData: {},
     };
   }
 
@@ -98,6 +98,8 @@ class DoctorSchedule extends Component {
 
   handleBooking = (item) => {
     console.log(item);
+    this.setState({ modalScheduleTimeData: item });
+    this.toggle();
   };
 
   render() {
@@ -125,7 +127,7 @@ class DoctorSchedule extends Component {
           </div>
           <div className="all-available">
             <div className="text-carlendar">
-              <i class="fa fa-calendar" aria-hidden="true"></i>
+              <i className="fa fa-calendar" aria-hidden="true"></i>
               <span>
                 <FormattedMessage id="patient.detail-doctor.schedule" />
               </span>
@@ -141,7 +143,7 @@ class DoctorSchedule extends Component {
                     <button
                       key={index}
                       onClick={() => {
-                        this.toggle();
+                        this.handleBooking(item);
                       }}
                     >
                       {timeDisplay}
@@ -165,17 +167,10 @@ class DoctorSchedule extends Component {
             centered
           >
             <ModalHeader toggle={this.toggle}>Booking Heath Care</ModalHeader>
-            <ModalBody>
-              <ModalBooking />
-            </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={this.saveCreateForm}>
-                Save
-              </Button>{" "}
-              <Button color="secondary" onClick={this.toggle}>
-                Cancel
-              </Button>
-            </ModalFooter>
+            <ModalBooking
+              bookingData={this.state.modalScheduleTimeData}
+              toggle={this.toggle}
+            />
           </Modal>
         </div>
       </>

@@ -388,7 +388,7 @@ class UserRedux extends Component {
                     onChange={(e) => this.handleImage(e)}
                   />
                   <label className="label-upload" htmlFor="imagePreview">
-                    <i class="fa fa-upload" aria-hidden="true">
+                    <i className="fa fa-upload" aria-hidden="true">
                       <FormattedMessage id="manage-user.upload" />
                     </i>
                   </label>
