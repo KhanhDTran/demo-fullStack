@@ -78,7 +78,21 @@
     "extra-infor-doctor": {
       "address": "Address",
       "payment-method": "Payment method",
-      "price" : "Price"
+      "price": "Price"
+    },
+    "booking-modal": {
+      "title": "Booking health care information",
+      "full-name": "Full name",
+      "phone-number": "Phone number",
+      "email": "Email",
+      "address": "Address",
+      "reason": "Booking reason",
+      "gender": "Gender",
+      "birthday": "Birthday",
+      "confirm": "Confirm",
+      "cancel": "cancel",
+      "free-booking": "Booking for free",
+      "price": "Price"
     }
   },
   "admin": {

@@ -7,6 +7,7 @@ import { NumericFormat } from "react-number-format";
 import _ from "lodash";
 import moment from "moment";
 import localization from "moment/locale/vi";
+import { FormattedMessage } from "react-intl";
 class ProfileDoctor extends Component {
   constructor(props) {
     super(props);
@@ -51,7 +52,10 @@ class ProfileDoctor extends Component {
         <>
           <div> {time}</div>
           <div> {this.capitalizeFirstLetter(date)}</div>
-          <div>Miễn phí đặt lịch</div>
+          <div>
+            {" "}
+            <FormattedMessage id="patient.booking-modal.free-booking" />
+          </div>
         </>
       );
     } else {
@@ -65,7 +69,6 @@ class ProfileDoctor extends Component {
   render() {
     let { dataProfile } = this.state;
     let { language, isShowDescription, timeData } = this.props;
-    console.log(timeData);
     let nameEn = "",
       nameVi = "";
     if (dataProfile && dataProfile.positionData) {
@@ -102,7 +105,9 @@ class ProfileDoctor extends Component {
         </div>
         <div className="price">
           {" "}
-          <span className="price-title"> Giá khám:</span>
+          <span className="price-title">
+            <FormattedMessage id="patient.booking-modal.price" />:
+          </span>
           {dataProfile &&
           dataProfile.Doctor_info &&
           language === LANGUAGES.VI ? (

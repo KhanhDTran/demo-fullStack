@@ -78,8 +78,13 @@ const getScheduleByDate = (doctorId, date) => {
 const getExtraInfoById = (doctorId) => {
   return instance.get(`/api/get-extra-info-by-id?id=${doctorId}`);
 };
+
 const getProfileDoctorById = (doctorId) => {
   return instance.get(`/api/get-profile-doctor?id=${doctorId}`);
+};
+
+const postPatientBookAppointment = (data) => {
+  return instance.post(`/api/patient-book-appointment`, { data: data });
 };
 
 export {
@@ -97,4 +102,5 @@ export {
   saveScheduleDoctor,
   getScheduleByDate,
   getProfileDoctorById,
+  postPatientBookAppointment,
 };

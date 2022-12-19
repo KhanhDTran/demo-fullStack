@@ -38,3 +38,4 @@ let initWebRoute = (app) => {
 };
 
 module.exports = initWebRoute;
+ 
