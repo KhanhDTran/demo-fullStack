@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./ModalBooking.scss";
 import { Button, ModalBody, ModalFooter } from "reactstrap";
-
+import ProfileDoctor from "../ProfileDoctor";
+import _ from "lodash";
 class ModalBooking extends Component {
   constructor(props) {
     super(props);
@@ -23,14 +24,19 @@ class ModalBooking extends Component {
   };
 
   render() {
-    console.log("--------", this.props);
+    // console.log("--------", this.props);
+    let { bookingData } = this.props;
+    let doctorId =
+      bookingData && !_.isEmpty(bookingData) ? bookingData.doctorId : "";
     return (
       <>
         <ModalBody>
           <div className="modal-booking-container">
             {/* {JSON.stringify(this.props.bookingData)} */}
-            <div className="doctor-info"></div>
-            <div className="price">Giá khám 500.000VNĐ</div>
+            <div className="doctor-info">
+              <ProfileDoctor doctorId={doctorId} />
+            </div>
+
             <div className="row">
               {/* Họ tên */}
               <div className="col-6 form-group">

@@ -93,6 +93,19 @@ const getExtraInfoById = async (req, res) => {
   }
 };
 
+const getProfileDoctor = async (req, res) => {
+  try {
+    let response = await docterService.getProfileDoctor(req.query.id);
+    return res.status(200).json(response);
+  } catch (e) {
+    console.log(e);
+    return res.status(200).json({
+      errCode: -1,
+      meessage: "Error from server",
+    });
+  }
+};
+
 module.exports = {
   getTopDoctorHome,
   getAllDoctor,
@@ -101,4 +114,5 @@ module.exports = {
   createSchedule,
   getScheduleByDate,
   getExtraInfoById,
+  getProfileDoctor,
 };

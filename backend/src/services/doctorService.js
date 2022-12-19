@@ -312,6 +312,69 @@ const getExtraInfoById = (doctorId) => {
   });
 };
 
+const getProfileDoctor = (id) => {
+  console.log("id: -------------", id);
+  return new Promise(async (resolve, reject) => {
+    try {
+      if (!id) {
+        resolve({
+          errCode: 1,
+          message: "Missing parameter",
+        });
+      } else {
+        let data = await db.User.findOne({
+          where: { id: id },
+          attributes: {
+            exclude: ["password"],
+          },
+          include: [
+            {
+              model: db.Markdown,
+              attributes: ["description"],
+            },
+            {
+              model: db.Doctor_info,
+              attributes: [
+                "priceId",
+                "provinceId",
+                "paymentId",
+                "addressClinic",
+                "nameClinic",
+                "note",
+              ],
+              include: [
+                {
+                  model: db.Allcode,
+                  as: "priceData",
+                  attributes: ["valueVi", "valueEn"],
+                },
+              ],
+            },
+            {
+              model: db.Allcode,
+              as: "positionData",
+              attributes: ["valueVi", "valueEn"],
+            },
+          ],
+          raw: false,
+          nest: true,
+        });
+        if (data && data.image) {
+          data.image = new Buffer(data.image, "base64").toString("binary");
+        }
+        if (!data) {
+          data = {};
+        }
+        resolve({
+          errCode: 0,
+          data: data,
+        });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 module.exports = {
   getTopDoctorHome,
   getAllDoctor,
@@ -320,4 +383,5 @@ module.exports = {
   createSchedule,
   getScheduleByDate,
   getExtraInfoById,
+  getProfileDoctor,
 };

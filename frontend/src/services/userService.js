@@ -78,6 +78,9 @@ const getScheduleByDate = (doctorId, date) => {
 const getExtraInfoById = (doctorId) => {
   return instance.get(`/api/get-extra-info-by-id?id=${doctorId}`);
 };
+const getProfileDoctorById = (doctorId) => {
+  return instance.get(`/api/get-profile-doctor?id=${doctorId}`);
+};
 
 export {
   getExtraInfoById,
@@ -93,4 +96,5 @@ export {
   getDoctorDetailInfo,
   saveScheduleDoctor,
   getScheduleByDate,
+  getProfileDoctorById,
 };

@@ -97,7 +97,6 @@ class DoctorSchedule extends Component {
   };
 
   handleBooking = (item) => {
-    console.log(item);
     this.setState({ modalScheduleTimeData: item });
     this.toggle();
   };
