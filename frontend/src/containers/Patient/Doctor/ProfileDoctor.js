@@ -76,7 +76,7 @@ class ProfileDoctor extends Component {
       nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
     return (
-      <>
+      <div className="doctor-info-modal">
         <div className="intro-doctor">
           <div
             className="content-left"
@@ -133,7 +133,7 @@ class ProfileDoctor extends Component {
             ""
           )}
         </div>
-      </>
+      </div>
     );
   }
 }

@@ -62,7 +62,11 @@ class ModalBooking extends Component {
 
   saveBookingModal = async () => {
     //validate input
-
+    let check = this.validateInput();
+    if (!check) {
+      toast.error("Missing input");
+      return;
+    }
     //call api
     let date = new Date(this.state.birthday).getTime();
     let res = await postPatientBookAppointment({
@@ -82,6 +86,22 @@ class ModalBooking extends Component {
     } else {
       toast.error("Booking fail");
     }
+  };
+
+  validateInput = () => {
+    let gender = this.state.selectedGender.value;
+    let { name, email, address, phoneNumber, reason, birthday } = this.state;
+    if (
+      !name ||
+      !email ||
+      !address ||
+      !reason ||
+      !birthday ||
+      !gender ||
+      !phoneNumber
+    ) {
+      return false;
+    } else return true;
   };
 
   handleOnChangeInput = (e) => {
@@ -150,7 +170,7 @@ class ModalBooking extends Component {
               {/* Địa chỉ email */}
               <div className="col-6 form-group">
                 <label htmlFor="email">
-                  <FormattedMessage id="patient.booking-modal.full-name" />
+                  <FormattedMessage id="patient.booking-modal.email" />
                 </label>
                 <input
                   type="email"
@@ -202,7 +222,7 @@ class ModalBooking extends Component {
                   id="birthday"
                   onChange={this.handleOnchangeDatePicker}
                   className="form-control"
-                  value={this.state.birthday}
+                  // value={this.state.birthday}
                 />
               </div>
               {/* Giới tính */}
