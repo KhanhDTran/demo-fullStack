@@ -11,9 +11,10 @@ const postBookAppointment = (data) => {
       } else {
         await emailService.sendSimpleEmail({
           receiverEmail: data.email,
-          patientName: "patient name",
-          time: "8h-9h",
-          doctorName: "KDT",
+          patientName: data.name,
+          time: data.timeString,
+          doctorName: data.doctorName,
+          language: data.language,
           redirectLink:
             "https://www.facebook.com/profile.php?id=100007606840118",
         });

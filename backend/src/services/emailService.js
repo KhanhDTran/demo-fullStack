@@ -24,10 +24,20 @@ let sendSimpleEmail = async (dataSend) => {
   let info = await transporter.sendMail({
     from: '"Khanh D Tran 👻" <trandanhkhanh@gmailcom>', // sender address
     to: dataSend.receiverEmail, // list of receivers
-    subject: "Thông tin đặt lịch khám bệnh", // Subject line
-    text: "Hello world?", // plain text body
-    html: `<h3>Xin chào ${dataSend.patientName}<h3/>
-        <p>Bạn nhận được email vì đã đặt lịch khám bệnh online của HealBooking<p/>
+    subject:
+      dataSend.language === "vi"
+        ? "Thông tin đặt lịch khám bệnh"
+        : "Health booking appoitment information", // Subject line
+    // text: "Hello world?", // plain text body
+    html: getBodyHTML(dataSend),
+  });
+};
+
+let getBodyHTML = (dataSend) => {
+  let result = "";
+  if (dataSend.language === "vi") {
+    result = `<h3>Xin chào ${dataSend.patientName}<h3/>
+        <p>Bạn nhận được email vì đã đặt lịch khám bệnh online của HealthBooking<p/>
         <p>Thông tin đặt lịch khám bệnh<p/>
         <div>Thời gian: ${dataSend.time}</div>
         <div>Bác Sĩ: ${dataSend.doctorName}</div>
@@ -35,7 +45,19 @@ let sendSimpleEmail = async (dataSend) => {
         đặt lịch khám bệnh<p/>
         <div><a href=${dataSend.redirectLink} target="_blank">Click Here<a/></div>
         <p>Xin chân thành cảm ơn<p/>
-        `, // html body
-  });
+        `;
+  }
+  if (dataSend.language === "en") {
+    result = `<h3>Dear${dataSend.patientName}<h3/>
+        <p>You've received a booking appointment from HealthBooking<p/>
+        <p>Health Booking appointment information<p/>
+        <div>Time: ${dataSend.time}</div>
+        <div>Doctor: ${dataSend.doctorName}</div>
+        <p>If youre the person who booking, please click on this link to confirm<p/>
+        <div><a href=${dataSend.redirectLink} target="_blank">Click Here<a/></div>
+        <p>Thank you<p/>
+        `;
+  }
+  return result;
 };
 module.exports = { sendSimpleEmail };

@@ -250,7 +250,14 @@ const getScheduleByDate = (doctorId, date) => {
       } else {
         let data = await db.Schedule.findAll({
           where: { doctorId: doctorId, date: date },
-          include: [{ model: db.Allcode, as: "timeData" }],
+          include: [
+            { model: db.Allcode, as: "timeData" },
+            {
+              model: db.User,
+              as: "doctorData",
+              attributes: ["firstName", "lastName"],
+            },
+          ],
           raw: false,
           nest: true,
         });

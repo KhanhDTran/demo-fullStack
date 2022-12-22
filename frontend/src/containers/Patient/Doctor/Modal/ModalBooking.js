@@ -11,6 +11,8 @@ import Select from "react-select";
 import { FormattedMessage } from "react-intl";
 import { postPatientBookAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
+import moment from "moment";
+import localization from "moment/locale/vi";
 class ModalBooking extends Component {
   constructor(props) {
     super(props);
@@ -61,6 +63,7 @@ class ModalBooking extends Component {
   };
 
   saveBookingModal = async () => {
+    let { timeData } = this.props;
     //validate input
     let check = this.validateInput();
     if (!check) {
@@ -69,6 +72,8 @@ class ModalBooking extends Component {
     }
     //call api
     let date = new Date(this.state.birthday).getTime();
+    let timeString = this.buildTimeData(timeData);
+    let doctorName = this.buildDoctorName(timeData);
     let res = await postPatientBookAppointment({
       name: this.state.name,
       phoneNumber: this.state.phoneNumber,
@@ -77,8 +82,11 @@ class ModalBooking extends Component {
       reason: this.state.reason,
       date: date,
       gender: this.state.selectedGender.value,
-      doctorId: this.props.timeData.doctorId,
-      timeType: this.props.timeData.timeData.keyMap,
+      doctorId: timeData.doctorId,
+      timeType: timeData.timeData.keyMap,
+      timeString: timeString,
+      language: this.props.language,
+      doctorName: doctorName,
     });
     if (res && res.data.errCode === 0) {
       toast.success("Booking successful");
@@ -86,6 +94,38 @@ class ModalBooking extends Component {
     } else {
       toast.error("Booking fail");
     }
+  };
+
+  buildTimeData = (timeData) => {
+    let { language } = this.props;
+    if (timeData && !_.isEmpty(timeData)) {
+      let time =
+        language === LANGUAGES.VI
+          ? timeData.timeData.valueVi
+          : timeData.timeData.valueEn;
+      let date =
+        language === LANGUAGES.VI
+          ? moment.unix(+timeData.date / 1000).format("dddd - DD/MM/YYYY")
+          : moment
+              .unix(+timeData.date / 1000)
+              .locale("en")
+              .format("ddd -  MM/DD/YYYY");
+      return `${time} - ${date}`;
+    }
+    return "";
+  };
+
+  buildDoctorName = (timeData) => {
+    let { language } = this.props;
+    if (timeData && !_.isEmpty(timeData)) {
+      let name =
+        language === LANGUAGES.VI
+          ? `${timeData.doctorData.firstName} ${timeData.doctorData.lastName}`
+          : `${timeData.doctorData.lastName} ${timeData.doctorData.firstName}`;
+
+      return name;
+    }
+    return "";
   };
 
   validateInput = () => {
@@ -124,6 +164,7 @@ class ModalBooking extends Component {
   render() {
     let { genders } = this.state;
     let { timeData } = this.props;
+    console.log(timeData);
     let doctorId = timeData && !_.isEmpty(timeData) ? timeData.doctorId : "";
     return (
       <>

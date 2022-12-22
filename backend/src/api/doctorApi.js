@@ -65,6 +65,7 @@ const createSchedule = async (req, res) => {
     });
   }
 };
+
 const getScheduleByDate = async (req, res) => {
   try {
     let response = await docterService.getScheduleByDate(
