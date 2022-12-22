@@ -23,7 +23,7 @@ export const adminMenu = [
     //Quản lý chuyên khoa
     name: "menu.admin.specialty",
     menus: [
-      { name: "menu.admin.manage-specialty", link: "/system/manage-specialty" },
+      { name: "menu.admin.manage-specialty", link: "/system/specialty-manage" },
     ],
   },
   {

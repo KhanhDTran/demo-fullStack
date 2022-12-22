@@ -26,7 +26,9 @@ class ManageSpecialty extends Component {
 
   handleOnChangeInput = (e) => {
     if (e.target.id === "name") {
-      this.setState({ name: e.target.value });
+      let copyState = { ...this.state };
+      copyState[e.target.id] = e.target.value;
+      this.setState({ ...copyState });
     }
   };
   handleEditorChange = ({ html, text }) => {
@@ -51,6 +53,12 @@ class ManageSpecialty extends Component {
     let res = await createNewSpecialty(this.state);
     if (res && res.data.errCode === 0) {
       toast.success("Create specialty success");
+      this.setState = {
+        name: "",
+        imgBase64: "",
+        descriptionHTML: "",
+        descriptionMarkdown: "",
+      };
     } else {
       toast.error("Create speacilty fail");
       console.log(res.data);
@@ -58,7 +66,7 @@ class ManageSpecialty extends Component {
   };
 
   render() {
-    let { name, imgBase64, descriptionHTML, descriptionMarkdown } = this.state;
+    let { name, descriptionMarkdown } = this.state;
     return (
       <>
         <div className="manage-specialy-container">

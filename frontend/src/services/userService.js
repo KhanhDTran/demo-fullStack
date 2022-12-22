@@ -95,6 +95,10 @@ const createNewSpecialty = (data) => {
   return instance.post(`/api/create-specialty`, { data: data });
 };
 
+const getAllSpecialty = () => {
+  return instance.get(`/api/get-all-specialty`);
+};
+
 export {
   getExtraInfoById,
   loginApi,
@@ -113,4 +117,5 @@ export {
   postPatientBookAppointment,
   postVerifytBookAppointment,
   createNewSpecialty,
+  getAllSpecialty,
 };

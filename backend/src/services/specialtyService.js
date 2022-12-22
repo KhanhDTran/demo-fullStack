@@ -24,7 +24,28 @@ let createSpecialty = (data) => {
     }
   });
 };
+let getAllSpecialty = () => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let speacialties = await db.Specialty.findAll({
+        nested: true,
+        raw: true,
+      });
+      if (speacialties && speacialties.length > 0) {
+        speacialties.map((item) => {
+          item.image = new Buffer(item.image, "base64").toString("binary");
+        });
+        resolve({ errCode: 0, data: speacialties });
+      } else {
+        resolve({ errCode: 2, data: {} });
+      }
+    } catch (e) {
+      reject(e);
+    }
+  });
+};
 
 module.exports = {
   createSpecialty,
+  getAllSpecialty,
 };

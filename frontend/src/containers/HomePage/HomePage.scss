@@ -92,9 +92,6 @@
           width: 100%;
           border-radius: 5px;
           background-size: cover;
-
-          &.img-specialty {
-          }
         }
 
         div {
@@ -110,7 +107,7 @@
   cursor: pointer;
   height: 80%;
   width: 100%;
-  background: url("../../assets/images/specialty.jpg") center center no-repeat;
+  // background: url("../../assets/images/specialty.jpg") center center no-repeat;
   border-radius: 5px;
   background-size: cover;
 }
