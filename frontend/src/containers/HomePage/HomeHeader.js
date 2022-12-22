@@ -24,7 +24,7 @@ class HomeHeader extends Component {
       <React.Fragment>
         <div className="home-header-container">
           <div className="header-left-content">
-            <i className="fa fa-bars" aria-hidden="true"></i>
+            <i className="fa fa-bars"></i>
             <img
               alt=""
               src={logoImg}
@@ -68,9 +68,7 @@ class HomeHeader extends Component {
             </div>
           </div>
           <div className="header-right-content">
-            <i className="fa fa-question-circle" aria-hidden="true">
-              Hỗ Trợ
-            </i>
+            <i className="fa fa-question-circle">Hỗ Trợ</i>
             <span
               className={
                 language === "vi" ? "language-vi active" : "language-vi"
@@ -100,7 +98,7 @@ class HomeHeader extends Component {
                 <FormattedMessage id="banner.title2" />
               </div>
               <div className="search">
-                <i className="fa fa-search" aria-hidden="true"></i>
+                <i className="fa fa-search"></i>
                 <input type="text" placeholder="Tìm bác sĩ...." />
               </div>
             </div>

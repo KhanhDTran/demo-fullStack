@@ -3,6 +3,7 @@ import userApi from "../api/userApi";
 import loginApi from "../api/loginApi";
 import doctorApi from "../api/doctorApi";
 import patientApi from "../api/patientApi";
+import specialtyApi from "../api/specialtyApi";
 
 require("dotenv").config();
 
@@ -35,8 +36,10 @@ let initWebRoute = (app) => {
   router.post("/api/patient-book-appointment", patientApi.postBookAppointment);
   router.post("/api/verify-book-appointment", patientApi.postVerifyAppointment);
 
+  //specialty
+  router.post("/api/create-specialty", specialtyApi.createSpecialty);
+
   return app.use("/", router);
 };
 
 module.exports = initWebRoute;
- 

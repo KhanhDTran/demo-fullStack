@@ -127,7 +127,7 @@ class DoctorSchedule extends Component {
           </div>
           <div className="all-available">
             <div className="text-carlendar">
-              <i className="fa fa-calendar" aria-hidden="true"></i>
+              <i className="fa fa-calendar"></i>
               <span>
                 <FormattedMessage id="patient.detail-doctor.schedule" />
               </span>

@@ -52,7 +52,7 @@ class ModalBooking extends Component {
   buildDataGender = (genders, language) => {
     let result = [];
     if (genders && genders.length > 0) {
-      genders.map((item) => {
+      genders.forEach((item) => {
         let object = {};
         object.label = language === LANGUAGES.VI ? item.valueVi : item.valueEn;
         object.value = item.keyMap;

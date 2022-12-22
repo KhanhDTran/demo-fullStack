@@ -90,6 +90,11 @@ const postPatientBookAppointment = (data) => {
 const postVerifytBookAppointment = (data) => {
   return instance.post(`/api/verify-book-appointment`, { data: data });
 };
+
+const createNewSpecialty = (data) => {
+  return instance.post(`/api/create-specialty`, { data: data });
+};
+
 export {
   getExtraInfoById,
   loginApi,
@@ -106,5 +111,6 @@ export {
   getScheduleByDate,
   getProfileDoctorById,
   postPatientBookAppointment,
-  postVerifytBookAppointment
+  postVerifytBookAppointment,
+  createNewSpecialty,
 };

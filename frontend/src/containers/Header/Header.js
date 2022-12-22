@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
-import { useState } from "react";
 import { connect } from "react-redux";
 import { changeLanguage } from "../../store/actions/userActions";
 import * as actions from "../../store/actions";

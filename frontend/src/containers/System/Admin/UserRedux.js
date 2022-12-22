@@ -383,12 +383,12 @@ class UserRedux extends Component {
                 <div className="preview-img-continer">
                   <input
                     type="file"
-                    hidden="true"
+                    hidden={true}
                     id="imagePreview"
                     onChange={(e) => this.handleImage(e)}
                   />
                   <label className="label-upload" htmlFor="imagePreview">
-                    <i className="fa fa-upload" aria-hidden="true">
+                    <i className="fa fa-upload">
                       <FormattedMessage id="manage-user.upload" />
                     </i>
                   </label>
