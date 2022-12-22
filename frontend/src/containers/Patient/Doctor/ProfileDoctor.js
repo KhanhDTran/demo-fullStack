@@ -30,7 +30,7 @@ class ProfileDoctor extends Component {
       if (res && res.data && res.data.data && res.data.errCode === 0) {
         result = res.data.data;
       }
-    }
+    } 
     return result;
   };
 
