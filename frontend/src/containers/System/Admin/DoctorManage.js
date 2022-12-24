@@ -30,9 +30,13 @@ class DoctorManage extends Component {
       selectedPrice: null,
       selectedPayment: null,
       selectedProvince: null,
+      selectedClinic: null,
+      selectedSpecialty: null,
       clinicName: "",
       clinicAddress: "",
       note: "",
+      clinicId: "",
+      specialtyId: "",
     };
   }
 
@@ -341,15 +345,25 @@ class DoctorManage extends Component {
           </div>
           <></>
         </div>
+
+        <div className="row">
+          <div className="form-group col-4">
+            <label htmlFor="">Chọn chuyên khoa</label>
+            <input type="text" className="form-control" />
+          </div>
+          <div className="form-group col-4">
+            <label htmlFor="">Chọn phòng khám </label>
+            <input type="text" className="form-control" />
+          </div>
+        </div>
         {/* mark down */}
         <div className="manage-doctor-editor">
           <MdEditor
             value={contentMarkdown ? contentMarkdown : ""}
-            style={{ height: "500px" }}
+            style={{ height: "300px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
           />
-          {/* address */}
         </div>
         <button
           onClick={() => {
